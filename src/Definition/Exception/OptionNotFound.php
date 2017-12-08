@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Definition\Exception;
+namespace ExtendsFramework\Console\Shell\Definition\Exception;
 
 use Exception;
-use ExtendsFramework\Shell\Definition\DefinitionException;
+use ExtendsFramework\Console\Shell\Definition\DefinitionException;
 
 class OptionNotFound extends Exception implements DefinitionException
 {

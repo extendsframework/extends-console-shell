@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Parser\Posix\Exception;
+namespace ExtendsFramework\Console\Shell\Parser\Posix\Exception;
 
 use Exception;
-use ExtendsFramework\Shell\Parser\ParserException;
+use ExtendsFramework\Console\Shell\Parser\ParserException;
 
 class MissingOperand extends Exception implements ParserException
 {

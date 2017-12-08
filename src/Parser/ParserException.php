@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Parser;
+namespace ExtendsFramework\Console\Shell\Parser;
 
 use Throwable;
 

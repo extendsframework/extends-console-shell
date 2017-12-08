@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Framework\ServiceLocator\Loader;
+namespace ExtendsFramework\Console\Shell\Framework\ServiceLocator\Loader;
 
 use ExtendsFramework\ServiceLocator\Config\Loader\LoaderInterface;
 use ExtendsFramework\ServiceLocator\Resolver\Factory\FactoryResolver;
 use ExtendsFramework\ServiceLocator\ServiceLocatorInterface;
-use ExtendsFramework\Shell\Framework\ServiceLocator\Factory\ShellFactory;
-use ExtendsFramework\Shell\ShellInterface;
+use ExtendsFramework\Console\Shell\Framework\ServiceLocator\Factory\ShellFactory;
+use ExtendsFramework\Console\Shell\ShellInterface;
 
 class ShellConfigLoader implements LoaderInterface
 {

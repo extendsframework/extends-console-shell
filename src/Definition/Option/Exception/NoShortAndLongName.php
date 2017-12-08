@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Definition\Option\Exception;
+namespace ExtendsFramework\Console\Shell\Definition\Option\Exception;
 
 use Exception;
-use ExtendsFramework\Shell\Definition\Option\OptionException;
+use ExtendsFramework\Console\Shell\Definition\Option\OptionException;
 
 class NoShortAndLongName extends Exception implements OptionException
 {

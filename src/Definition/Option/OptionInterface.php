@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Definition\Option;
+namespace ExtendsFramework\Console\Shell\Definition\Option;
 
 interface OptionInterface
 {

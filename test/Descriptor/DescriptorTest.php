@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Descriptor;
+namespace ExtendsFramework\Console\Shell\Descriptor;
 
 use Exception;
 use ExtendsFramework\Console\Formatter\FormatterInterface;
 use ExtendsFramework\Console\Output\OutputInterface;
-use ExtendsFramework\Shell\About\AboutInterface;
-use ExtendsFramework\Shell\Command\CommandInterface;
-use ExtendsFramework\Shell\Definition\DefinitionInterface;
-use ExtendsFramework\Shell\Definition\Operand\OperandInterface;
-use ExtendsFramework\Shell\Definition\Option\OptionInterface;
+use ExtendsFramework\Console\Shell\About\AboutInterface;
+use ExtendsFramework\Console\Shell\Command\CommandInterface;
+use ExtendsFramework\Console\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Console\Shell\Definition\Operand\OperandInterface;
+use ExtendsFramework\Console\Shell\Definition\Option\OptionInterface;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
@@ -21,8 +21,8 @@ class DescriptorTest extends TestCase
      *
      * Test that descriptor can describe shell (short).
      *
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::shell()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::shell()
      */
     public function testShellShort(): void
     {
@@ -62,9 +62,9 @@ class DescriptorTest extends TestCase
      *
      * Test that descriptor can describe shell (long).
      *
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::shell()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOptionNotation()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::shell()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::getOptionNotation()
      */
     public function testShellLong(): void
     {
@@ -157,9 +157,9 @@ class DescriptorTest extends TestCase
      *
      * Test that descriptor can describe shell (long) and will show a dash when no commands are defined.
      *
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::shell()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOptionNotation()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::shell()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::getOptionNotation()
      */
     public function testShellLongWithoutCommands(): void
     {
@@ -239,8 +239,8 @@ class DescriptorTest extends TestCase
      *
      * Test that descriptor can describe command (short).
      *
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::command()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::command()
      */
     public function testCommandShort(): void
     {
@@ -284,9 +284,9 @@ class DescriptorTest extends TestCase
      *
      * Test that descriptor can describe command (long).
      *
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::command()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOptionNotation
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::command()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::getOptionNotation
      */
     public function testCommandLong(): void
     {
@@ -391,8 +391,8 @@ class DescriptorTest extends TestCase
      *
      * Test that descriptor can suggest.
      *
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::suggest()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::suggest()
      */
     public function testSuggest(): void
     {
@@ -423,8 +423,8 @@ class DescriptorTest extends TestCase
      *
      * Test that descriptor can describe exception.
      *
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::exception()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::exception()
      */
     public function testException(): void
     {
@@ -448,8 +448,8 @@ class DescriptorTest extends TestCase
      *
      * Set verbosity for output to 3.
      *
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::setVerbosity()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Descriptor\Descriptor::setVerbosity()
      */
     public function testVerbosity(): void
     {

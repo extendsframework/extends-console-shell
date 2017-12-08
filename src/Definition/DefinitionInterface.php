@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Definition;
+namespace ExtendsFramework\Console\Shell\Definition;
 
-use ExtendsFramework\Shell\Definition\Operand\OperandInterface;
-use ExtendsFramework\Shell\Definition\Option\OptionInterface;
+use ExtendsFramework\Console\Shell\Definition\Operand\OperandInterface;
+use ExtendsFramework\Console\Shell\Definition\Option\OptionInterface;
 
 interface DefinitionInterface
 {

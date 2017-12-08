@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell;
+namespace ExtendsFramework\Console\Shell;
 
 use ExtendsFramework\Console\Output\Posix\PosixOutput;
-use ExtendsFramework\Shell\About\About;
-use ExtendsFramework\Shell\Command\Command;
-use ExtendsFramework\Shell\Command\CommandInterface;
-use ExtendsFramework\Shell\Definition\Definition;
-use ExtendsFramework\Shell\Definition\Operand\Operand;
-use ExtendsFramework\Shell\Definition\Option\Option;
-use ExtendsFramework\Shell\Descriptor\Descriptor;
-use ExtendsFramework\Shell\Descriptor\DescriptorInterface;
-use ExtendsFramework\Shell\Parser\ParserInterface;
-use ExtendsFramework\Shell\Parser\Posix\PosixParser;
-use ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester;
-use ExtendsFramework\Shell\Suggester\SuggesterInterface;
+use ExtendsFramework\Console\Shell\About\About;
+use ExtendsFramework\Console\Shell\Command\Command;
+use ExtendsFramework\Console\Shell\Command\CommandInterface;
+use ExtendsFramework\Console\Shell\Definition\Definition;
+use ExtendsFramework\Console\Shell\Definition\Operand\Operand;
+use ExtendsFramework\Console\Shell\Definition\Option\Option;
+use ExtendsFramework\Console\Shell\Descriptor\Descriptor;
+use ExtendsFramework\Console\Shell\Descriptor\DescriptorInterface;
+use ExtendsFramework\Console\Shell\Parser\ParserInterface;
+use ExtendsFramework\Console\Shell\Parser\Posix\PosixParser;
+use ExtendsFramework\Console\Shell\Suggester\SimilarText\SimilarTextSuggester;
+use ExtendsFramework\Console\Shell\Suggester\SuggesterInterface;
 
 class ShellBuilder implements ShellBuilderInterface
 {

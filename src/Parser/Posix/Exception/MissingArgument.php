@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Parser\Posix\Exception;
+namespace ExtendsFramework\Console\Shell\Parser\Posix\Exception;
 
 use Exception;
-use ExtendsFramework\Shell\Definition\Option\OptionInterface;
-use ExtendsFramework\Shell\Parser\ParserException;
+use ExtendsFramework\Console\Shell\Definition\Option\OptionInterface;
+use ExtendsFramework\Console\Shell\Parser\ParserException;
 
 class MissingArgument extends Exception implements ParserException
 {

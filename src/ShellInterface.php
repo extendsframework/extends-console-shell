@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell;
+namespace ExtendsFramework\Console\Shell;
 
 interface ShellInterface
 {

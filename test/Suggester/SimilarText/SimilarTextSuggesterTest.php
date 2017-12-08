@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Suggester\SimilarText;
+namespace ExtendsFramework\Console\Shell\Suggester\SimilarText;
 
-use ExtendsFramework\Shell\Command\CommandInterface;
+use ExtendsFramework\Console\Shell\Command\CommandInterface;
 use PHPUnit\Framework\TestCase;
 
 class SimilarTextSuggesterTest extends TestCase
@@ -13,8 +13,8 @@ class SimilarTextSuggesterTest extends TestCase
      *
      * Test that suggester can suggest command ('do.task') for phrase ('d_task').
      *
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
+     * @covers \ExtendsFramework\Console\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
      */
     public function testBestMatch(): void
     {
@@ -44,8 +44,8 @@ class SimilarTextSuggesterTest extends TestCase
      *
      * Test that suggester can suggest command ('some.task') for phrase ('some.task').
      *
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
+     * @covers \ExtendsFramework\Console\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
      */
     public function testExactMatch(): void
     {
@@ -74,8 +74,8 @@ class SimilarTextSuggesterTest extends TestCase
      *
      * Test that suggester can not suggest a command for phrase ('foo.bar').
      *
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
+     * @covers \ExtendsFramework\Console\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
      */
     public function testNoMatch(): void
     {

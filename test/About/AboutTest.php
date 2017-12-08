@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\About;
+namespace ExtendsFramework\Console\Shell\About;
 
 use PHPUnit\Framework\TestCase;
 
@@ -12,10 +12,10 @@ class AboutTest extends TestCase
      *
      * Test that get methods will correct values.
      *
-     * @covers \ExtendsFramework\Shell\About\About::__construct()
-     * @covers \ExtendsFramework\Shell\About\About::getName()
-     * @covers \ExtendsFramework\Shell\About\About::getProgram()
-     * @covers \ExtendsFramework\Shell\About\About::getVersion()
+     * @covers \ExtendsFramework\Console\Shell\About\About::__construct()
+     * @covers \ExtendsFramework\Console\Shell\About\About::getName()
+     * @covers \ExtendsFramework\Console\Shell\About\About::getProgram()
+     * @covers \ExtendsFramework\Console\Shell\About\About::getVersion()
      */
     public function testGetMethods(): void
     {

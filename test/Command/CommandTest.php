@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Command;
+namespace ExtendsFramework\Console\Shell\Command;
 
-use ExtendsFramework\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Console\Shell\Definition\DefinitionInterface;
 use PHPUnit\Framework\TestCase;
 
 class CommandTest extends TestCase
@@ -13,11 +13,11 @@ class CommandTest extends TestCase
      *
      * Test if all the get parameters return the given construct values.
      *
-     * @covers \ExtendsFramework\Shell\Command\Command::__construct()
-     * @covers \ExtendsFramework\Shell\Command\Command::getName()
-     * @covers \ExtendsFramework\Shell\Command\Command::getDescription()
-     * @covers \ExtendsFramework\Shell\Command\Command::getDefinition()
-     * @covers \ExtendsFramework\Shell\Command\Command::getParameters()
+     * @covers \ExtendsFramework\Console\Shell\Command\Command::__construct()
+     * @covers \ExtendsFramework\Console\Shell\Command\Command::getName()
+     * @covers \ExtendsFramework\Console\Shell\Command\Command::getDescription()
+     * @covers \ExtendsFramework\Console\Shell\Command\Command::getDefinition()
+     * @covers \ExtendsFramework\Console\Shell\Command\Command::getParameters()
      */
     public function testGetParameters(): void
     {

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell;
+namespace ExtendsFramework\Console\Shell;
 
-use ExtendsFramework\Shell\Descriptor\DescriptorInterface;
-use ExtendsFramework\Shell\Parser\ParserInterface;
-use ExtendsFramework\Shell\Suggester\SuggesterInterface;
+use ExtendsFramework\Console\Shell\Descriptor\DescriptorInterface;
+use ExtendsFramework\Console\Shell\Parser\ParserInterface;
+use ExtendsFramework\Console\Shell\Suggester\SuggesterInterface;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -16,22 +16,22 @@ class ShellBuilderTest extends TestCase
      *
      * Test that builder will build and return a shell.
      *
-     * @covers \ExtendsFramework\Shell\ShellBuilder::setName()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::setProgram()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::setVersion()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::setDescriptor()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::setParser()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::setSuggester()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::addCommand()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getName()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getProgram()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getVersion()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getDescriptor()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getParser()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getSuggester()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getCommands()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::build()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::reset()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::setName()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::setProgram()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::setVersion()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::setDescriptor()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::setParser()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::setSuggester()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::addCommand()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::getName()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::getProgram()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::getVersion()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::getDescriptor()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::getParser()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::getSuggester()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::getCommands()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::build()
+     * @covers \ExtendsFramework\Console\Shell\ShellBuilder::reset()
      */
     public function testBuild(): void
     {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Shell\Task;
+namespace ExtendsFramework\Console\Shell\Task;
 
 interface TaskInterface
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Parser;
+namespace ExtendsFramework\Shell\Parser;
 
 class ParseResult implements ParseResultInterface
 {

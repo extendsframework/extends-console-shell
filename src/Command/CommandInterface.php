@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Command;
+namespace ExtendsFramework\Shell\Command;
 
-use ExtendsFramework\Console\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Shell\Definition\DefinitionInterface;
 
 interface CommandInterface
 {

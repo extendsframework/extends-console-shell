@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Definition\Operand;
+namespace ExtendsFramework\Shell\Definition\Operand;
 
 use PHPUnit\Framework\TestCase;
 
@@ -12,8 +12,8 @@ class OperandTest extends TestCase
      *
      * Test if all the get parameters return the given construct values.
      *
-     * @covers \ExtendsFramework\Console\Shell\Definition\Operand\Operand::__construct()
-     * @covers \ExtendsFramework\Console\Shell\Definition\Operand\Operand::getName()
+     * @covers \ExtendsFramework\Shell\Definition\Operand\Operand::__construct()
+     * @covers \ExtendsFramework\Shell\Definition\Operand\Operand::getName()
      */
     public function testGetParameters(): void
     {

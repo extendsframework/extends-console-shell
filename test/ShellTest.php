@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell;
+namespace ExtendsFramework\Shell;
 
-use ExtendsFramework\Console\Shell\About\AboutInterface;
-use ExtendsFramework\Console\Shell\Command\CommandInterface;
-use ExtendsFramework\Console\Shell\Definition\DefinitionInterface;
-use ExtendsFramework\Console\Shell\Descriptor\DescriptorInterface;
-use ExtendsFramework\Console\Shell\Exception\CommandNotFound;
-use ExtendsFramework\Console\Shell\Parser\ParseResultInterface;
-use ExtendsFramework\Console\Shell\Parser\ParserInterface;
-use ExtendsFramework\Console\Shell\Parser\Posix\Exception\ArgumentNotAllowed;
-use ExtendsFramework\Console\Shell\Suggester\SuggesterInterface;
+use ExtendsFramework\Shell\About\AboutInterface;
+use ExtendsFramework\Shell\Command\CommandInterface;
+use ExtendsFramework\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Shell\Descriptor\DescriptorInterface;
+use ExtendsFramework\Shell\Exception\CommandNotFound;
+use ExtendsFramework\Shell\Parser\ParseResultInterface;
+use ExtendsFramework\Shell\Parser\ParserInterface;
+use ExtendsFramework\Shell\Parser\Posix\Exception\ArgumentNotAllowed;
+use ExtendsFramework\Shell\Suggester\SuggesterInterface;
 use PHPUnit\Framework\TestCase;
 
 class ShellTest extends TestCase
@@ -22,9 +22,9 @@ class ShellTest extends TestCase
      * Test if the descriptor will be called to describe an exception and the shell when a default parameter
      * ('--help=true') is invalid.
      *
-     * @covers \ExtendsFramework\Console\Shell\Shell::__construct()
-     * @covers \ExtendsFramework\Console\Shell\Shell::process()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getDefinition()
+     * @covers \ExtendsFramework\Shell\Shell::__construct()
+     * @covers \ExtendsFramework\Shell\Shell::process()
+     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
      */
     public function testInvalidDefaultParameter(): void
     {
@@ -72,9 +72,9 @@ class ShellTest extends TestCase
      *
      * Test if the descriptor is called to describe the shell when no remaining arguments left.
      *
-     * @covers \ExtendsFramework\Console\Shell\Shell::__construct()
-     * @covers \ExtendsFramework\Console\Shell\Shell::process()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getDefinition()
+     * @covers \ExtendsFramework\Shell\Shell::__construct()
+     * @covers \ExtendsFramework\Shell\Shell::process()
+     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
      */
     public function testNoRemainingArguments(): void
     {
@@ -123,9 +123,9 @@ class ShellTest extends TestCase
      *
      * Test that verbosity will be set to 3.
      *
-     * @covers \ExtendsFramework\Console\Shell\Shell::__construct()
-     * @covers \ExtendsFramework\Console\Shell\Shell::process()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getDefinition()
+     * @covers \ExtendsFramework\Shell\Shell::__construct()
+     * @covers \ExtendsFramework\Shell\Shell::process()
+     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
      */
     public function testVerbosity(): void
     {
@@ -179,11 +179,11 @@ class ShellTest extends TestCase
      *
      * Test if the descriptor is called to describe an exception and shell when no command can be found.
      *
-     * @covers \ExtendsFramework\Console\Shell\Shell::__construct()
-     * @covers \ExtendsFramework\Console\Shell\Shell::process()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getDefinition()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getCommand()
-     * @covers \ExtendsFramework\Console\Shell\Exception\CommandNotFound::__construct()
+     * @covers \ExtendsFramework\Shell\Shell::__construct()
+     * @covers \ExtendsFramework\Shell\Shell::process()
+     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
+     * @covers \ExtendsFramework\Shell\Shell::getCommand()
+     * @covers \ExtendsFramework\Shell\Exception\CommandNotFound::__construct()
      */
     public function testCommandNotFound(): void
     {
@@ -249,11 +249,11 @@ class ShellTest extends TestCase
      *
      * Test if the descriptor is called to describe the given command.
      *
-     * @covers \ExtendsFramework\Console\Shell\Shell::__construct()
-     * @covers \ExtendsFramework\Console\Shell\Shell::addCommand()
-     * @covers \ExtendsFramework\Console\Shell\Shell::process()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getDefinition()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getCommand()
+     * @covers \ExtendsFramework\Shell\Shell::__construct()
+     * @covers \ExtendsFramework\Shell\Shell::addCommand()
+     * @covers \ExtendsFramework\Shell\Shell::process()
+     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
+     * @covers \ExtendsFramework\Shell\Shell::getCommand()
      */
     public function testHelpForCommand(): void
     {
@@ -317,11 +317,11 @@ class ShellTest extends TestCase
      *
      * Test that a command can be matched and the result is returned.
      *
-     * @covers \ExtendsFramework\Console\Shell\Shell::__construct()
-     * @covers \ExtendsFramework\Console\Shell\Shell::addCommand()
-     * @covers \ExtendsFramework\Console\Shell\Shell::process()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getDefinition()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getCommand()
+     * @covers \ExtendsFramework\Shell\Shell::__construct()
+     * @covers \ExtendsFramework\Shell\Shell::addCommand()
+     * @covers \ExtendsFramework\Shell\Shell::process()
+     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
+     * @covers \ExtendsFramework\Shell\Shell::getCommand()
      */
     public function testMatchedCommand(): void
     {
@@ -417,11 +417,11 @@ class ShellTest extends TestCase
      *
      * Test if the descriptor is called to describe an exception and shell when parsing the command fails.
      *
-     * @covers \ExtendsFramework\Console\Shell\Shell::__construct()
-     * @covers \ExtendsFramework\Console\Shell\Shell::addCommand()
-     * @covers \ExtendsFramework\Console\Shell\Shell::process()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getDefinition()
-     * @covers \ExtendsFramework\Console\Shell\Shell::getCommand()
+     * @covers \ExtendsFramework\Shell\Shell::__construct()
+     * @covers \ExtendsFramework\Shell\Shell::addCommand()
+     * @covers \ExtendsFramework\Shell\Shell::process()
+     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
+     * @covers \ExtendsFramework\Shell\Shell::getCommand()
      */
     public function testFailedCommand(): void
     {

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Definition;
+namespace ExtendsFramework\Shell\Definition;
 
-use ExtendsFramework\Console\Shell\Definition\Operand\OperandInterface;
-use ExtendsFramework\Console\Shell\Definition\Option\OptionInterface;
+use ExtendsFramework\Shell\Definition\Operand\OperandInterface;
+use ExtendsFramework\Shell\Definition\Option\OptionInterface;
 use PHPUnit\Framework\TestCase;
 
 class DefinitionTest extends TestCase
@@ -14,12 +14,12 @@ class DefinitionTest extends TestCase
      *
      * Test that options and operands can be added and received.
      *
-     * @covers \ExtendsFramework\Console\Shell\Definition\Definition::addOption()
-     * @covers \ExtendsFramework\Console\Shell\Definition\Definition::addOperand()
-     * @covers \ExtendsFramework\Console\Shell\Definition\Definition::getOption()
-     * @covers \ExtendsFramework\Console\Shell\Definition\Definition::getOperand()
-     * @covers \ExtendsFramework\Console\Shell\Definition\Definition::getOptions()
-     * @covers \ExtendsFramework\Console\Shell\Definition\Definition::getOperands()
+     * @covers \ExtendsFramework\Shell\Definition\Definition::addOption()
+     * @covers \ExtendsFramework\Shell\Definition\Definition::addOperand()
+     * @covers \ExtendsFramework\Shell\Definition\Definition::getOption()
+     * @covers \ExtendsFramework\Shell\Definition\Definition::getOperand()
+     * @covers \ExtendsFramework\Shell\Definition\Definition::getOptions()
+     * @covers \ExtendsFramework\Shell\Definition\Definition::getOperands()
      */
     public function testAddAndGet(): void
     {
@@ -68,9 +68,9 @@ class DefinitionTest extends TestCase
      *
      * Test that short option ('f') can not be found and an exception will be thrown.
      *
-     * @covers                   \ExtendsFramework\Console\Shell\Definition\Definition::getOption()
-     * @covers                   \ExtendsFramework\Console\Shell\Definition\Exception\OptionNotFound::__construct()
-     * @expectedException        \ExtendsFramework\Console\Shell\Definition\Exception\OptionNotFound
+     * @covers                   \ExtendsFramework\Shell\Definition\Definition::getOption()
+     * @covers                   \ExtendsFramework\Shell\Definition\Exception\OptionNotFound::__construct()
+     * @expectedException        \ExtendsFramework\Shell\Definition\Exception\OptionNotFound
      * @expectedExceptionMessage No short option found for name "-f".
      */
     public function testOptionNotFound(): void
@@ -84,9 +84,9 @@ class DefinitionTest extends TestCase
      *
      * Test that long option ('force') can not be found and an exception will be thrown.
      *
-     * @covers                   \ExtendsFramework\Console\Shell\Definition\Definition::getOption()
-     * @covers                   \ExtendsFramework\Console\Shell\Definition\Exception\OptionNotFound::__construct()
-     * @expectedException        \ExtendsFramework\Console\Shell\Definition\Exception\OptionNotFound
+     * @covers                   \ExtendsFramework\Shell\Definition\Definition::getOption()
+     * @covers                   \ExtendsFramework\Shell\Definition\Exception\OptionNotFound::__construct()
+     * @expectedException        \ExtendsFramework\Shell\Definition\Exception\OptionNotFound
      * @expectedExceptionMessage No long option found for name "--force".
      */
     public function testCanNotGetLongOption(): void
@@ -100,9 +100,9 @@ class DefinitionTest extends TestCase
      *
      * Test that long option for position (0) can not be found and an exception will be thrown.
      *
-     * @covers                   \ExtendsFramework\Console\Shell\Definition\Definition::getOperand()
-     * @covers                   \ExtendsFramework\Console\Shell\Definition\Exception\OperandNotFound::__construct()
-     * @expectedException        \ExtendsFramework\Console\Shell\Definition\Exception\OperandNotFound
+     * @covers                   \ExtendsFramework\Shell\Definition\Definition::getOperand()
+     * @covers                   \ExtendsFramework\Shell\Definition\Exception\OperandNotFound::__construct()
+     * @expectedException        \ExtendsFramework\Shell\Definition\Exception\OperandNotFound
      * @expectedExceptionMessage No operand found for position "0".
      */
     public function testCanNotGetOperand(): void

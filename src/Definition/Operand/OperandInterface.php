@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Definition\Operand;
+namespace ExtendsFramework\Shell\Definition\Operand;
 
 interface OperandInterface
 {

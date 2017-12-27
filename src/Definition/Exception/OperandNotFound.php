@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Definition\Exception;
+namespace ExtendsFramework\Shell\Definition\Exception;
 
 use Exception;
-use ExtendsFramework\Console\Shell\Definition\DefinitionException;
+use ExtendsFramework\Shell\Definition\DefinitionException;
 
 class OperandNotFound extends Exception implements DefinitionException
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\About;
+namespace ExtendsFramework\Shell\About;
 
 interface AboutInterface
 {

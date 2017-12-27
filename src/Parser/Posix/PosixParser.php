@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Parser\Posix;
+namespace ExtendsFramework\Shell\Parser\Posix;
 
 use ArrayIterator;
-use ExtendsFramework\Console\Shell\Definition\DefinitionException;
-use ExtendsFramework\Console\Shell\Definition\DefinitionInterface;
-use ExtendsFramework\Console\Shell\Definition\Operand\OperandInterface;
-use ExtendsFramework\Console\Shell\Definition\Option\OptionInterface;
-use ExtendsFramework\Console\Shell\Parser\ParseResult;
-use ExtendsFramework\Console\Shell\Parser\ParseResultInterface;
-use ExtendsFramework\Console\Shell\Parser\ParserInterface;
-use ExtendsFramework\Console\Shell\Parser\Posix\Exception\ArgumentNotAllowed;
-use ExtendsFramework\Console\Shell\Parser\Posix\Exception\MissingArgument;
-use ExtendsFramework\Console\Shell\Parser\Posix\Exception\MissingOperand;
+use ExtendsFramework\Shell\Definition\DefinitionException;
+use ExtendsFramework\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Shell\Definition\Operand\OperandInterface;
+use ExtendsFramework\Shell\Definition\Option\OptionInterface;
+use ExtendsFramework\Shell\Parser\ParseResult;
+use ExtendsFramework\Shell\Parser\ParseResultInterface;
+use ExtendsFramework\Shell\Parser\ParserInterface;
+use ExtendsFramework\Shell\Parser\Posix\Exception\ArgumentNotAllowed;
+use ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument;
+use ExtendsFramework\Shell\Parser\Posix\Exception\MissingOperand;
 
 class PosixParser implements ParserInterface
 {

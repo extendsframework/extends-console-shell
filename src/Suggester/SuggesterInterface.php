@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Suggester;
+namespace ExtendsFramework\Shell\Suggester;
 
-use ExtendsFramework\Console\Shell\Command\CommandInterface;
+use ExtendsFramework\Shell\Command\CommandInterface;
 
 interface SuggesterInterface
 {

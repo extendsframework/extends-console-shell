@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Parser;
+namespace ExtendsFramework\Shell\Parser;
 
-use ExtendsFramework\Console\Shell\Definition\DefinitionException;
-use ExtendsFramework\Console\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Shell\Definition\DefinitionException;
+use ExtendsFramework\Shell\Definition\DefinitionInterface;
 
 interface ParserInterface
 {

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Exception;
+namespace ExtendsFramework\Shell\Exception;
 
 use Exception;
-use ExtendsFramework\Console\Shell\ShellException;
+use ExtendsFramework\Shell\ShellException;
 
 class CommandNotFound extends Exception implements ShellException
 {

@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell;
+namespace ExtendsFramework\Shell;
 
-use ExtendsFramework\Console\Shell\About\AboutInterface;
-use ExtendsFramework\Console\Shell\Command\CommandInterface;
-use ExtendsFramework\Console\Shell\Definition\Definition;
-use ExtendsFramework\Console\Shell\Definition\DefinitionException;
-use ExtendsFramework\Console\Shell\Definition\DefinitionInterface;
-use ExtendsFramework\Console\Shell\Definition\Option\Option;
-use ExtendsFramework\Console\Shell\Descriptor\DescriptorInterface;
-use ExtendsFramework\Console\Shell\Exception\CommandNotFound;
-use ExtendsFramework\Console\Shell\Parser\ParserException;
-use ExtendsFramework\Console\Shell\Parser\ParserInterface;
-use ExtendsFramework\Console\Shell\Suggester\SuggesterInterface;
+use ExtendsFramework\Shell\About\AboutInterface;
+use ExtendsFramework\Shell\Command\CommandInterface;
+use ExtendsFramework\Shell\Definition\Definition;
+use ExtendsFramework\Shell\Definition\DefinitionException;
+use ExtendsFramework\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Shell\Definition\Option\Option;
+use ExtendsFramework\Shell\Descriptor\DescriptorInterface;
+use ExtendsFramework\Shell\Exception\CommandNotFound;
+use ExtendsFramework\Shell\Parser\ParserException;
+use ExtendsFramework\Shell\Parser\ParserInterface;
+use ExtendsFramework\Shell\Suggester\SuggesterInterface;
 
 class Shell implements ShellInterface
 {

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Definition\Option;
+namespace ExtendsFramework\Shell\Definition\Option;
 
-use ExtendsFramework\Console\Shell\Definition\DefinitionException;
+use ExtendsFramework\Shell\Definition\DefinitionException;
 
 interface OptionException extends DefinitionException
 {

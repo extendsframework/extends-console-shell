@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Framework\ServiceLocator\Factory;
+namespace ExtendsFramework\Shell\Framework\ServiceLocator\Factory;
 
 use ExtendsFramework\ServiceLocator\Resolver\Factory\ServiceFactoryInterface;
 use ExtendsFramework\ServiceLocator\ServiceLocatorInterface;
-use ExtendsFramework\Console\Shell\ShellBuilder;
-use ExtendsFramework\Console\Shell\ShellInterface;
+use ExtendsFramework\Shell\ShellBuilder;
+use ExtendsFramework\Shell\ShellInterface;
 
 class ShellFactory implements ServiceFactoryInterface
 {

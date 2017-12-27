@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Descriptor;
+namespace ExtendsFramework\Shell\Descriptor;
 
-use ExtendsFramework\Console\Shell\About\AboutInterface;
-use ExtendsFramework\Console\Shell\Command\CommandInterface;
-use ExtendsFramework\Console\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Shell\About\AboutInterface;
+use ExtendsFramework\Shell\Command\CommandInterface;
+use ExtendsFramework\Shell\Definition\DefinitionInterface;
 use Throwable;
 
 interface DescriptorInterface

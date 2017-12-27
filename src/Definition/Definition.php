@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Definition;
+namespace ExtendsFramework\Shell\Definition;
 
-use ExtendsFramework\Console\Shell\Definition\Exception\OperandNotFound;
-use ExtendsFramework\Console\Shell\Definition\Exception\OptionNotFound;
-use ExtendsFramework\Console\Shell\Definition\Operand\OperandInterface;
-use ExtendsFramework\Console\Shell\Definition\Option\OptionInterface;
+use ExtendsFramework\Shell\Definition\Exception\OperandNotFound;
+use ExtendsFramework\Shell\Definition\Exception\OptionNotFound;
+use ExtendsFramework\Shell\Definition\Operand\OperandInterface;
+use ExtendsFramework\Shell\Definition\Option\OptionInterface;
 
 class Definition implements DefinitionInterface
 {

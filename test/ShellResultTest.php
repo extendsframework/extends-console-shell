@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell;
+namespace ExtendsFramework\Shell;
 
-use ExtendsFramework\Console\Shell\Command\CommandInterface;
+use ExtendsFramework\Shell\Command\CommandInterface;
 use PHPUnit\Framework\TestCase;
 
 class ShellResultTest extends TestCase
@@ -13,9 +13,9 @@ class ShellResultTest extends TestCase
      *
      * Test if all the get parameters return the given construct values.
      *
-     * @covers \ExtendsFramework\Console\Shell\ShellResult::__construct()
-     * @covers \ExtendsFramework\Console\Shell\ShellResult::getCommand()
-     * @covers \ExtendsFramework\Console\Shell\ShellResult::getData()
+     * @covers \ExtendsFramework\Shell\ShellResult::__construct()
+     * @covers \ExtendsFramework\Shell\ShellResult::getCommand()
+     * @covers \ExtendsFramework\Shell\ShellResult::getData()
      */
     public function testGetParameters(): void
     {

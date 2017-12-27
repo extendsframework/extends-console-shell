@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell;
+namespace ExtendsFramework\Shell;
 
-use ExtendsFramework\Console\Shell\Command\CommandInterface;
+use ExtendsFramework\Shell\Command\CommandInterface;
 
 interface ShellResultInterface
 {

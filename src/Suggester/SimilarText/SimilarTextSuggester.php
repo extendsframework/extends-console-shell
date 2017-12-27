@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ExtendsFramework\Console\Shell\Suggester\SimilarText;
+namespace ExtendsFramework\Shell\Suggester\SimilarText;
 
-use ExtendsFramework\Console\Shell\Command\CommandInterface;
-use ExtendsFramework\Console\Shell\Suggester\SuggesterInterface;
+use ExtendsFramework\Shell\Command\CommandInterface;
+use ExtendsFramework\Shell\Suggester\SuggesterInterface;
 
 class SimilarTextSuggester implements SuggesterInterface
 {

@@ -34,8 +34,12 @@ class Descriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function shell(AboutInterface $about, DefinitionInterface $definition, array $commands, bool $short = null): DescriptorInterface
-    {
+    public function shell(
+        AboutInterface $about,
+        DefinitionInterface $definition,
+        array $commands,
+        bool $short = null
+    ): DescriptorInterface {
         $output = $this->output;
         $formatter = $output->getFormatter();
 

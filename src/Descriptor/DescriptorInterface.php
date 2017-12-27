@@ -19,7 +19,12 @@ interface DescriptorInterface
      * @param bool|null           $short
      * @return DescriptorInterface
      */
-    public function shell(AboutInterface $about, DefinitionInterface $definition, array $commands, bool $short = null): DescriptorInterface;
+    public function shell(
+        AboutInterface $about,
+        DefinitionInterface $definition,
+        array $commands,
+        bool $short = null
+    ): DescriptorInterface;
 
     /**
      * Describe $command.

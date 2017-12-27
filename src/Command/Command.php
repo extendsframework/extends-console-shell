@@ -43,8 +43,12 @@ class Command implements CommandInterface
      * @param DefinitionInterface $definition
      * @param array|null          $parameters
      */
-    public function __construct(string $name, string $description, DefinitionInterface $definition, array $parameters = null)
-    {
+    public function __construct(
+        string $name,
+        string $description,
+        DefinitionInterface $definition,
+        array $parameters = null
+    ) {
         $this->name = $name;
         $this->description = $description;
         $this->definition = $definition;

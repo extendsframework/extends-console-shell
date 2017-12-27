@@ -60,8 +60,14 @@ class Option implements OptionInterface
      * @param bool|null   $isMultiple
      * @throws NoShortAndLongName
      */
-    public function __construct(string $name, string $description, string $short = null, string $long = null, bool $isFlag = null, bool $isMultiple = null)
-    {
+    public function __construct(
+        string $name,
+        string $description,
+        string $short = null,
+        string $long = null,
+        bool $isFlag = null,
+        bool $isMultiple = null
+    ) {
         if ($short === null && $long === null) {
             throw new NoShortAndLongName($name);
         }

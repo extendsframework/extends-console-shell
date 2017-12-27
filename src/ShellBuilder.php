@@ -103,8 +103,13 @@ class ShellBuilder implements ShellBuilderInterface
      * @param array|null $parameters
      * @return ShellBuilder
      */
-    public function addCommand(string $name, string $description, array $operands = null, array $options = null, array $parameters = null): ShellBuilder
-    {
+    public function addCommand(
+        string $name,
+        string $description,
+        array $operands = null,
+        array $options = null,
+        array $parameters = null
+    ): ShellBuilder {
         $definition = new Definition();
         foreach ($operands ?? [] as $operand) {
             $definition->addOperand(

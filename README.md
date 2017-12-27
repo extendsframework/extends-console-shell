@@ -1,2 +1,2 @@
-# extendsframework/extends-console-shell
-Console shell component from Extends Framework.
+# extendsframework/extends-shell
+Shell component from Extends Framework.

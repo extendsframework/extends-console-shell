@@ -23,6 +23,7 @@ class DescriptorTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::shell()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOutput()
      */
     public function testShellShort(): void
     {
@@ -64,6 +65,7 @@ class DescriptorTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::shell()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOutput()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOptionNotation()
      */
     public function testShellLong(): void
@@ -159,6 +161,7 @@ class DescriptorTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::shell()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOutput()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOptionNotation()
      */
     public function testShellLongWithoutCommands(): void
@@ -241,6 +244,7 @@ class DescriptorTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::command()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOutput()
      */
     public function testCommandShort(): void
     {
@@ -286,7 +290,8 @@ class DescriptorTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::command()
-     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOptionNotation
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOutput()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOptionNotation()
      */
     public function testCommandLong(): void
     {
@@ -393,6 +398,7 @@ class DescriptorTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::suggest()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOutput()
      */
     public function testSuggest(): void
     {
@@ -425,6 +431,7 @@ class DescriptorTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
      * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::exception()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOutput()
      */
     public function testException(): void
     {

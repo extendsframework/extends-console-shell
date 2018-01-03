@@ -41,7 +41,7 @@ class Shell implements ShellInterface
     /**
      * Shell about information.
      *
-     * @var string
+     * @var AboutInterface
      */
     protected $about;
 
@@ -85,14 +85,18 @@ class Shell implements ShellInterface
      */
     public function process(array $arguments): ?ShellResultInterface
     {
+        $about = $this->getAbout();
+        $parser = $this->getParser();
+        $commands = $this->getCommands();
         $definition = $this->getDefinition();
+        $descriptor = $this->getDescriptor();
 
         try {
-            $defaults = $this->parser->parse($definition, $arguments, false);
+            $defaults = $parser->parse($definition, $arguments, false);
         } catch (ParserException | DefinitionException $exception) {
-            $this->descriptor
+            $descriptor
                 ->exception($exception)
-                ->shell($this->about, $definition, $this->commands, true);
+                ->shell($about, $definition, $commands, true);
 
             return null;
         }
@@ -100,11 +104,11 @@ class Shell implements ShellInterface
         $remaining = $defaults->getRemaining();
         $parsed = $defaults->getParsed();
 
-        $this->descriptor->setVerbosity($parsed['verbose'] ?? 1);
+        $descriptor->setVerbosity($parsed['verbose'] ?? 1);
 
         $name = array_shift($remaining);
         if ($name === null) {
-            $this->descriptor->shell($this->about, $definition, $this->commands);
+            $descriptor->shell($about, $definition, $commands);
 
             return null;
         }
@@ -112,23 +116,27 @@ class Shell implements ShellInterface
         try {
             $command = $this->getCommand($name);
         } catch (CommandNotFound $exception) {
-            $this->descriptor
+            $descriptor
                 ->exception($exception)
-                ->suggest($this->suggester->suggest($name, ...$this->commands))
-                ->shell($this->about, $definition, $this->commands, true);
+                ->suggest(
+                    $this
+                        ->getSuggester()
+                        ->suggest($name, ...$commands)
+                )
+                ->shell($about, $definition, $commands, true);
 
             return null;
         }
 
         $help = $parsed['help'] ?? false;
         if ($help === true) {
-            $this->descriptor->command($this->about, $command);
+            $descriptor->command($about, $command);
 
             return null;
         }
 
         try {
-            $result = $this->parser->parse(
+            $result = $parser->parse(
                 $command->getDefinition(),
                 $remaining
             );
@@ -138,9 +146,9 @@ class Shell implements ShellInterface
                 $result->getParsed()
             );
         } catch (ParserException | DefinitionException $exception) {
-            $this->descriptor
+            $descriptor
                 ->exception($exception)
-                ->command($this->about, $command, true);
+                ->command($about, $command, true);
 
             return null;
         }
@@ -195,5 +203,55 @@ class Shell implements ShellInterface
         }
 
         return $this->definition;
+    }
+
+    /**
+     * Get descriptor.
+     *
+     * @return DescriptorInterface
+     */
+    protected function getDescriptor(): DescriptorInterface
+    {
+        return $this->descriptor;
+    }
+
+    /**
+     * Get suggester.
+     *
+     * @return SuggesterInterface
+     */
+    protected function getSuggester(): SuggesterInterface
+    {
+        return $this->suggester;
+    }
+
+    /**
+     * Get parser.
+     *
+     * @return ParserInterface
+     */
+    protected function getParser(): ParserInterface
+    {
+        return $this->parser;
+    }
+
+    /**
+     * Get about.
+     *
+     * @return AboutInterface
+     */
+    protected function getAbout(): AboutInterface
+    {
+        return $this->about;
+    }
+
+    /**
+     * Get commands.
+     *
+     * @return CommandInterface[]
+     */
+    protected function getCommands(): array
+    {
+        return $this->commands;
     }
 }

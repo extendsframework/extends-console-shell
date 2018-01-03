@@ -40,7 +40,7 @@ class Descriptor implements DescriptorInterface
         array $commands,
         bool $short = null
     ): DescriptorInterface {
-        $output = $this->output;
+        $output = $this->getOutput();
         $formatter = $output->getFormatter();
 
         if ($short === true) {
@@ -134,7 +134,7 @@ class Descriptor implements DescriptorInterface
     public function command(AboutInterface $about, CommandInterface $command, bool $short = null): DescriptorInterface
     {
         $short = $short ?? false;
-        $output = $this->output;
+        $output = $this->getOutput();
         $formatter = $output->getFormatter();
         $definition = $command->getDefinition();
 
@@ -220,7 +220,7 @@ class Descriptor implements DescriptorInterface
      */
     public function suggest(CommandInterface $command = null): DescriptorInterface
     {
-        $output = $this->output;
+        $output = $this->getOutput();
         $formatter = $output->getFormatter();
 
         if ($command instanceof CommandInterface) {
@@ -242,7 +242,7 @@ class Descriptor implements DescriptorInterface
      */
     public function exception(Throwable $exception): DescriptorInterface
     {
-        $output = $this->output;
+        $output = $this->getOutput();
         $formatter = $output->getFormatter();
 
         $output
@@ -303,5 +303,15 @@ class Descriptor implements DescriptorInterface
         }
 
         return $notation;
+    }
+
+    /**
+     * Get output.
+     *
+     * @return OutputInterface
+     */
+    protected function getOutput(): OutputInterface
+    {
+        return $this->output;
     }
 }

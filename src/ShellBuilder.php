@@ -9,6 +9,7 @@ use ExtendsFramework\Shell\Command\Command;
 use ExtendsFramework\Shell\Command\CommandInterface;
 use ExtendsFramework\Shell\Definition\Definition;
 use ExtendsFramework\Shell\Definition\Operand\Operand;
+use ExtendsFramework\Shell\Definition\Option\Exception\NoShortAndLongName;
 use ExtendsFramework\Shell\Definition\Option\Option;
 use ExtendsFramework\Shell\Descriptor\Descriptor;
 use ExtendsFramework\Shell\Descriptor\DescriptorInterface;
@@ -102,6 +103,7 @@ class ShellBuilder implements ShellBuilderInterface
      * @param array|null $options
      * @param array|null $parameters
      * @return ShellBuilder
+     * @throws NoShortAndLongName When both short and long name are not given.
      */
     public function addCommand(
         string $name,
@@ -111,13 +113,13 @@ class ShellBuilder implements ShellBuilderInterface
         array $parameters = null
     ): ShellBuilder {
         $definition = new Definition();
-        foreach ($operands ?? [] as $operand) {
+        foreach ($operands ?: [] as $operand) {
             $definition->addOperand(
                 new Operand($operand['name'])
             );
         }
 
-        foreach ($options ?? [] as $option) {
+        foreach ($options ?: [] as $option) {
             $definition->addOption(
                 new Option(
                     $option['name'],
@@ -141,9 +143,29 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
+     * Get commands.
+     *
+     * @return CommandInterface[]
+     */
+    protected function getCommands(): array
+    {
+        return $this->commands;
+    }
+
+    /**
+     * Get shell name.
+     *
+     * @return string|null
+     */
+    protected function getName(): ?string
+    {
+        return $this->name ?: 'Extends Framework Console';
+    }
+
+    /**
      * Set shell name.
      *
-     * @param null|string $name
+     * @param string|null $name
      * @return ShellBuilder
      */
     public function setName($name = null): ShellBuilder
@@ -154,9 +176,19 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
+     * Get program to run shell.
+     *
+     * @return string|null
+     */
+    protected function getProgram(): ?string
+    {
+        return $this->program ?: 'extends';
+    }
+
+    /**
      * Set command to run shell.
      *
-     * @param null|string $program
+     * @param string|null $program
      * @return ShellBuilder
      */
     public function setProgram($program = null): ShellBuilder
@@ -167,9 +199,19 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
+     * Get shell version.
+     *
+     * @return string|null
+     */
+    protected function getVersion(): ?string
+    {
+        return $this->version ?: '0.1';
+    }
+
+    /**
      * Set shell version.
      *
-     * @param null|string $version
+     * @param string|null $version
      * @return ShellBuilder
      */
     public function setVersion($version = null): ShellBuilder
@@ -177,6 +219,16 @@ class ShellBuilder implements ShellBuilderInterface
         $this->version = $version;
 
         return $this;
+    }
+
+    /**
+     * Get shell descriptor.
+     *
+     * @return DescriptorInterface|null
+     */
+    protected function getDescriptor(): ?DescriptorInterface
+    {
+        return $this->descriptor ?: new Descriptor(new PosixOutput());
     }
 
     /**
@@ -193,6 +245,16 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
+     * Get command suggester.
+     *
+     * @return SuggesterInterface|null
+     */
+    protected function getSuggester(): ?SuggesterInterface
+    {
+        return $this->suggester ?: new SimilarTextSuggester();
+    }
+
+    /**
      * Set command suggester.
      *
      * @param SuggesterInterface|null $suggester
@@ -203,6 +265,16 @@ class ShellBuilder implements ShellBuilderInterface
         $this->suggester = $suggester;
 
         return $this;
+    }
+
+    /**
+     * Get argument parser.
+     *
+     * @return ParserInterface|null
+     */
+    protected function getParser(): ?ParserInterface
+    {
+        return $this->parser ?: new PosixParser();
     }
 
     /**
@@ -219,83 +291,18 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
-     * Get commands.
-     *
-     * @return CommandInterface[]
-     */
-    protected function getCommands(): array
-    {
-        return $this->commands;
-    }
-
-    /**
-     * Get shell name.
-     *
-     * @return null|string
-     */
-    protected function getName(): ?string
-    {
-        return $this->name ?: 'Extends Framework Console';
-    }
-
-    /**
-     * Get program to run shell.
-     *
-     * @return null|string
-     */
-    protected function getProgram(): ?string
-    {
-        return $this->program ?: 'extends';
-    }
-
-    /**
-     * Get shell version.
-     *
-     * @return null|string
-     */
-    protected function getVersion(): ?string
-    {
-        return $this->version ?: '0.1';
-    }
-
-    /**
-     * Get shell descriptor.
-     *
-     * @return DescriptorInterface|null
-     */
-    protected function getDescriptor(): ?DescriptorInterface
-    {
-        return $this->descriptor ?: new Descriptor(new PosixOutput());
-    }
-
-    /**
-     * Get command suggester.
-     *
-     * @return SuggesterInterface|null
-     */
-    protected function getSuggester(): ?SuggesterInterface
-    {
-        return $this->suggester ?: new SimilarTextSuggester();
-    }
-
-    /**
-     * Get argument parser.
-     *
-     * @return ParserInterface|null
-     */
-    protected function getParser(): ?ParserInterface
-    {
-        return $this->parser ?: new PosixParser();
-    }
-
-    /**
      * Reset builder after build.
      *
      * @return ShellBuilder
      */
     protected function reset(): ShellBuilder
     {
-        $this->name = $this->program = $this->version = $this->descriptor = $this->suggester = $this->parser = null;
+        $this->name = null;
+        $this->program = null;
+        $this->version = null;
+        $this->descriptor = null;
+        $this->suggester = null;
+        $this->parser = null;
         $this->commands = [];
 
         return $this;

@@ -5,6 +5,7 @@ namespace ExtendsFramework\Shell\Descriptor;
 
 use ExtendsFramework\Console\Formatter\Color\Red\Red;
 use ExtendsFramework\Console\Formatter\Color\Yellow\Yellow;
+use ExtendsFramework\Console\Formatter\FormatterException;
 use ExtendsFramework\Console\Output\OutputInterface;
 use ExtendsFramework\Shell\About\AboutInterface;
 use ExtendsFramework\Shell\Command\CommandInterface;
@@ -33,6 +34,7 @@ class Descriptor implements DescriptorInterface
 
     /**
      * @inheritDoc
+     * @throws FormatterException When foreground color is not supported.
      */
     public function shell(
         AboutInterface $about,
@@ -130,6 +132,7 @@ class Descriptor implements DescriptorInterface
 
     /**
      * @inheritDoc
+     * @throws FormatterException When foreground color is not supported.
      */
     public function command(AboutInterface $about, CommandInterface $command, bool $short = null): DescriptorInterface
     {
@@ -217,6 +220,7 @@ class Descriptor implements DescriptorInterface
 
     /**
      * @inheritDoc
+     * @throws FormatterException When foreground color is not supported.
      */
     public function suggest(CommandInterface $command = null): DescriptorInterface
     {
@@ -239,6 +243,7 @@ class Descriptor implements DescriptorInterface
 
     /**
      * @inheritDoc
+     * @throws FormatterException When foreground color is not supported.
      */
     public function exception(Throwable $exception): DescriptorInterface
     {
@@ -281,23 +286,23 @@ class Descriptor implements DescriptorInterface
         if ($short !== null) {
             $notation .= '-' . $short;
 
-            if ($flag === false) {
+            if (!$flag) {
                 $notation .= '=';
-            } elseif ($multiple === true) {
+            } elseif ($multiple) {
                 $notation .= '+';
             }
         }
 
         if ($long !== null) {
-            if (strlen($notation) > 0) {
+            if ($notation !== '') {
                 $notation .= '|';
             }
 
             $notation .= '--' . $long;
 
-            if ($flag === false) {
+            if (!$flag) {
                 $notation .= '=';
-            } elseif ($multiple === true) {
+            } elseif ($multiple) {
                 $notation .= '+';
             }
         }

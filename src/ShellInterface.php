@@ -11,7 +11,7 @@ interface ShellInterface
      * When $arguments can not be matched, null will be returned.
      *
      * @param array $arguments
-     * @return null|ShellResultInterface
+     * @return ShellResultInterface|null
      */
     public function process(array $arguments): ?ShellResultInterface;
 }

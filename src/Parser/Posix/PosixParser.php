@@ -51,7 +51,7 @@ class PosixParser implements ParserInterface
      * @throws MissingArgument
      * @see http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html
      */
-    protected function parseArguments(
+    private function parseArguments(
         DefinitionInterface $definition,
         array &$arguments,
         bool $strict
@@ -164,7 +164,7 @@ class PosixParser implements ParserInterface
      * @return OperandInterface|null
      * @throws DefinitionException When $strict is true and operand doesn't exist.
      */
-    protected function getOperand(DefinitionInterface $definition, int $position, bool $strict): ?OperandInterface
+    private function getOperand(DefinitionInterface $definition, int $position, bool $strict): ?OperandInterface
     {
         try {
             $operand = $definition->getOperand($position);
@@ -187,7 +187,7 @@ class PosixParser implements ParserInterface
      * @return OptionInterface|null
      * @throws DefinitionException When $strict is true and option doesn't exist.
      */
-    protected function getOption(
+    private function getOption(
         DefinitionInterface $definition,
         string $name,
         bool $long,

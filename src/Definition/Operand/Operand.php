@@ -10,7 +10,7 @@ class Operand implements OperandInterface
      *
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * Create new OperandInterface with $name.

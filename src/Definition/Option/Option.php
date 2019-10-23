@@ -12,42 +12,42 @@ class Option implements OptionInterface
      *
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * Option description.
      *
      * @var string
      */
-    protected $description;
+    private $description;
 
     /**
      * Short name.
      *
      * @var string|null
      */
-    protected $short;
+    private $short;
 
     /**
      * Long name.
      *
      * @var string|null
      */
-    protected $long;
+    private $long;
 
     /**
      * If a argument is allowed.
      *
      * @var bool
      */
-    protected $isFlag;
+    private $isFlag;
 
     /**
      * If multiple arguments are allowed.
      *
      * @var bool
      */
-    protected $isMultiple;
+    private $isMultiple;
 
     /**
      * Create new option.

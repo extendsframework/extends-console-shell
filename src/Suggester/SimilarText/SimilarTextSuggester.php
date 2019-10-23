@@ -13,7 +13,7 @@ class SimilarTextSuggester implements SuggesterInterface
      *
      * @var int|null
      */
-    protected $percentage;
+    private $percentage;
 
     /**
      * Create new suggester.
@@ -55,7 +55,7 @@ class SimilarTextSuggester implements SuggesterInterface
      *
      * @return int
      */
-    protected function getPercentage(): int
+    private function getPercentage(): int
     {
         return $this->percentage ?? 60;
     }

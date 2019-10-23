@@ -12,28 +12,28 @@ class Command implements CommandInterface
      *
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * Command description.
      *
      * @var string
      */
-    protected $description;
+    private $description;
 
     /**
      * Command definition.
      *
      * @var DefinitionInterface
      */
-    protected $definition;
+    private $definition;
 
     /**
      * Extra command parameters.
      *
      * @var array
      */
-    protected $parameters;
+    private $parameters;
 
     /**
      * Create new command for $name with $description and $definition.

@@ -10,21 +10,21 @@ class ParseResult implements ParseResultInterface
      *
      * @var array
      */
-    protected $parsed;
+    private $parsed;
 
     /**
      * Remaining data when not in strict mode.
      *
      * @var array
      */
-    protected $remaining;
+    private $remaining;
 
     /**
      * If parsing was done in strict mode.
      *
      * @var bool
      */
-    protected $strict;
+    private $strict;
 
     /**
      * Create new parse result.

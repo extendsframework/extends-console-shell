@@ -10,21 +10,21 @@ class About implements AboutInterface
      *
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * Program to run shel..
      *
      * @var string
      */
-    protected $program;
+    private $program;
 
     /**
      * Shell version.
      *
      * @var string
      */
-    protected $version;
+    private $version;
 
     /**
      * About constructor.

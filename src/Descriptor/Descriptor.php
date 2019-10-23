@@ -20,7 +20,7 @@ class Descriptor implements DescriptorInterface
      *
      * @var OutputInterface
      */
-    protected $output;
+    private $output;
 
     /**
      * Create a new descriptor.
@@ -281,7 +281,7 @@ class Descriptor implements DescriptorInterface
      * @param OptionInterface $option
      * @return string
      */
-    protected function getOptionNotation(OptionInterface $option): string
+    private function getOptionNotation(OptionInterface $option): string
     {
         $multiple = $option->isMultiple();
         $short = $option->getShort();
@@ -321,7 +321,7 @@ class Descriptor implements DescriptorInterface
      *
      * @return OutputInterface
      */
-    protected function getOutput(): OutputInterface
+    private function getOutput(): OutputInterface
     {
         return $this->output;
     }

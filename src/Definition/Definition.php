@@ -15,14 +15,14 @@ class Definition implements DefinitionInterface
      *
      * @var OptionInterface[]
      */
-    protected $options = [];
+    private $options = [];
 
     /**
      * Operands to iterate.
      *
      * @var OperandInterface[]
      */
-    protected $operands = [];
+    private $operands = [];
 
     /**
      * @inheritDoc

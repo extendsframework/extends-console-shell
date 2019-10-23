@@ -12,14 +12,14 @@ class ShellResult implements ShellResultInterface
      *
      * @var CommandInterface
      */
-    protected $command;
+    private $command;
 
     /**
      * Parsed data for command.
      *
      * @var array
      */
-    protected $data;
+    private $data;
 
     /**
      * Create new shell result.

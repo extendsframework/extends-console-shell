@@ -23,42 +23,42 @@ class Shell implements ShellInterface
      *
      * @var DescriptorInterface
      */
-    protected $descriptor;
+    private $descriptor;
 
     /**
      * Command suggester.
      *
      * @var SuggesterInterface
      */
-    protected $suggester;
+    private $suggester;
 
     /**
      * Parser to use for arguments.
      *
      * @var ParserInterface
      */
-    protected $parser;
+    private $parser;
 
     /**
      * Shell about information.
      *
      * @var AboutInterface
      */
-    protected $about;
+    private $about;
 
     /**
      * Shell definition for global options.
      *
      * @var DefinitionInterface
      */
-    protected $definition;
+    private $definition;
 
     /**
      * Commands to iterate.
      *
      * @var CommandInterface[]
      */
-    protected $commands;
+    private $commands;
 
     /**
      * Create a new Shell.
@@ -178,7 +178,7 @@ class Shell implements ShellInterface
      * @return CommandInterface
      * @throws CommandNotFound When command can not be found.
      */
-    protected function getCommand(string $name): CommandInterface
+    private function getCommand(string $name): CommandInterface
     {
         foreach ($this->commands as $command) {
             if ($command->getName() === $name) {
@@ -195,7 +195,7 @@ class Shell implements ShellInterface
      * @return DefinitionInterface
      * @throws NoShortAndLongName
      */
-    protected function getDefinition(): DefinitionInterface
+    private function getDefinition(): DefinitionInterface
     {
         if ($this->definition === null) {
             $this->definition = (new Definition())
@@ -211,7 +211,7 @@ class Shell implements ShellInterface
      *
      * @return DescriptorInterface
      */
-    protected function getDescriptor(): DescriptorInterface
+    private function getDescriptor(): DescriptorInterface
     {
         return $this->descriptor;
     }
@@ -221,7 +221,7 @@ class Shell implements ShellInterface
      *
      * @return SuggesterInterface
      */
-    protected function getSuggester(): SuggesterInterface
+    private function getSuggester(): SuggesterInterface
     {
         return $this->suggester;
     }
@@ -231,7 +231,7 @@ class Shell implements ShellInterface
      *
      * @return ParserInterface
      */
-    protected function getParser(): ParserInterface
+    private function getParser(): ParserInterface
     {
         return $this->parser;
     }
@@ -241,7 +241,7 @@ class Shell implements ShellInterface
      *
      * @return AboutInterface
      */
-    protected function getAbout(): AboutInterface
+    private function getAbout(): AboutInterface
     {
         return $this->about;
     }
@@ -251,7 +251,7 @@ class Shell implements ShellInterface
      *
      * @return CommandInterface[]
      */
-    protected function getCommands(): array
+    private function getCommands(): array
     {
         return $this->commands;
     }

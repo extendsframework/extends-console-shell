@@ -25,49 +25,49 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @var string|null
      */
-    protected $name;
+    private $name;
 
     /**
      * Command to run shell.
      *
      * @var string|null
      */
-    protected $program;
+    private $program;
 
     /**
      * Shell version.
      *
      * @var string|null
      */
-    protected $version;
+    private $version;
 
     /**
      * Shell descriptor.
      *
      * @var DescriptorInterface|null
      */
-    protected $descriptor;
+    private $descriptor;
 
     /**
      * Command suggester.
      *
      * @var SuggesterInterface|null
      */
-    protected $suggester;
+    private $suggester;
 
     /**
      * Argument parser.
      *
      * @var ParserInterface|null
      */
-    protected $parser;
+    private $parser;
 
     /**
      * Commands.
      *
      * @var CommandInterface[]
      */
-    protected $commands = [];
+    private $commands = [];
 
     /**
      * @inheritDoc
@@ -147,7 +147,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @return CommandInterface[]
      */
-    protected function getCommands(): array
+    private function getCommands(): array
     {
         return $this->commands;
     }
@@ -157,7 +157,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @return string|null
      */
-    protected function getName(): ?string
+    private function getName(): ?string
     {
         return $this->name ?: 'Extends Framework Console';
     }
@@ -180,7 +180,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @return string|null
      */
-    protected function getProgram(): ?string
+    private function getProgram(): ?string
     {
         return $this->program ?: 'extends';
     }
@@ -203,7 +203,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @return string|null
      */
-    protected function getVersion(): ?string
+    private function getVersion(): ?string
     {
         return $this->version ?: '0.1';
     }
@@ -226,7 +226,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @return DescriptorInterface|null
      */
-    protected function getDescriptor(): ?DescriptorInterface
+    private function getDescriptor(): ?DescriptorInterface
     {
         return $this->descriptor ?: new Descriptor(new PosixOutput());
     }
@@ -249,7 +249,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @return SuggesterInterface|null
      */
-    protected function getSuggester(): ?SuggesterInterface
+    private function getSuggester(): ?SuggesterInterface
     {
         return $this->suggester ?: new SimilarTextSuggester();
     }
@@ -272,7 +272,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @return ParserInterface|null
      */
-    protected function getParser(): ?ParserInterface
+    private function getParser(): ?ParserInterface
     {
         return $this->parser ?: new PosixParser();
     }
@@ -295,7 +295,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @return ShellBuilder
      */
-    protected function reset(): ShellBuilder
+    private function reset(): ShellBuilder
     {
         $this->name = null;
         $this->program = null;

@@ -5,6 +5,7 @@ namespace ExtendsFramework\Shell\Framework\ServiceLocator\Factory;
 
 use ExtendsFramework\ServiceLocator\Resolver\Factory\ServiceFactoryInterface;
 use ExtendsFramework\ServiceLocator\ServiceLocatorInterface;
+use ExtendsFramework\Shell\Definition\Option\Exception\NoShortAndLongName;
 use ExtendsFramework\Shell\ShellBuilder;
 use ExtendsFramework\Shell\ShellInterface;
 
@@ -12,6 +13,7 @@ class ShellFactory implements ServiceFactoryInterface
 {
     /**
      * @inheritDoc
+     * @throws NoShortAndLongName
      */
     public function createService(string $key, ServiceLocatorInterface $serviceLocator, array $extra = null): object
     {

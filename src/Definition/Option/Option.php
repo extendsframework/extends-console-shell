@@ -24,14 +24,14 @@ class Option implements OptionInterface
     /**
      * Short name.
      *
-     * @var null|string
+     * @var string|null
      */
     protected $short;
 
     /**
      * Long name.
      *
-     * @var null|string
+     * @var string|null
      */
     protected $long;
 
@@ -76,8 +76,8 @@ class Option implements OptionInterface
         $this->description = $description;
         $this->short = $short;
         $this->long = $long;
-        $this->isFlag = $isFlag ?? true;
-        $this->isMultiple = $isMultiple ?? false;
+        $this->isFlag = $isFlag ?: true;
+        $this->isMultiple = $isMultiple ?: false;
     }
 
     /**
@@ -89,7 +89,7 @@ class Option implements OptionInterface
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getDescription(): string
     {

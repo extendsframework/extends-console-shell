@@ -66,7 +66,10 @@ class Descriptor implements DescriptorInterface
             ->line('Usage:')
             ->newLine()
             ->text(
-                $about->getProgram(),
+                sprintf(
+                    '%s ',
+                    $about->getProgram()
+                ),
                 $formatter
                     ->setForeground(new Yellow())
                     ->setFixedWidth(strlen($about->getProgram()) + 1)
@@ -163,7 +166,10 @@ class Descriptor implements DescriptorInterface
             ->line('Usage:')
             ->newLine()
             ->text(
-                $about->getProgram(),
+                sprintf(
+                    '%s ',
+                    $about->getProgram()
+                ),
                 $formatter
                     ->setForeground(new Yellow())
                     ->setFixedWidth(strlen($about->getProgram()) + 1)

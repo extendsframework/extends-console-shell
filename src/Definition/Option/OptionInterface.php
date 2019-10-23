@@ -24,7 +24,7 @@ interface OptionInterface
      *
      * If empty, long name will be available.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getShort(): ?string;
 
@@ -33,7 +33,7 @@ interface OptionInterface
      *
      * If empty, short name will be available.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getLong(): ?string;
 

@@ -8,6 +8,7 @@ use ExtendsFramework\Shell\Command\CommandInterface;
 use ExtendsFramework\Shell\Definition\Definition;
 use ExtendsFramework\Shell\Definition\DefinitionException;
 use ExtendsFramework\Shell\Definition\DefinitionInterface;
+use ExtendsFramework\Shell\Definition\Option\Exception\NoShortAndLongName;
 use ExtendsFramework\Shell\Definition\Option\Option;
 use ExtendsFramework\Shell\Descriptor\DescriptorInterface;
 use ExtendsFramework\Shell\Exception\CommandNotFound;
@@ -82,6 +83,7 @@ class Shell implements ShellInterface
 
     /**
      * @inheritDoc
+     * @throws NoShortAndLongName
      */
     public function process(array $arguments): ?ShellResultInterface
     {
@@ -172,11 +174,9 @@ class Shell implements ShellInterface
     /**
      * Get command with $name.
      *
-     * An exception will be thrown when command can not be found.
-     *
      * @param string $name
      * @return CommandInterface
-     * @throws CommandNotFound
+     * @throws CommandNotFound When command can not be found.
      */
     protected function getCommand(string $name): CommandInterface
     {
@@ -193,6 +193,7 @@ class Shell implements ShellInterface
      * Get definition for default options.
      *
      * @return DefinitionInterface
+     * @throws NoShortAndLongName
      */
     protected function getDefinition(): DefinitionInterface
     {

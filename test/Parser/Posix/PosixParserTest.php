@@ -251,7 +251,7 @@ class PosixParserTest extends TestCase
             ->willReturn('foo');
 
         $option
-            ->expects($this->exactly(2))
+            ->expects($this->once())
             ->method('isFlag')
             ->willReturn(false);
 
@@ -582,7 +582,7 @@ class PosixParserTest extends TestCase
     {
         $option = $this->createMock(OptionInterface::class);
         $option
-            ->expects($this->exactly(2))
+            ->expects($this->once())
             ->method('isFlag')
             ->willReturn(false);
 

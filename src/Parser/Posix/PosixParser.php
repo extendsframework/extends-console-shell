@@ -25,12 +25,12 @@ class PosixParser implements ParserInterface
         $strict = $strict ?? true;
 
         $result = $this->parseArguments($definition, $arguments, $strict);
-        if ($strict === true) {
+        if ($strict) {
             $parsed = $result->getParsed();
 
             foreach ($definition->getOperands() as $operand) {
                 $name = $operand->getName();
-                if (array_key_exists($name, $parsed) === false) {
+                if (!array_key_exists($name, $parsed)) {
                     throw new MissingOperand($name);
                 }
             }
@@ -65,7 +65,7 @@ class PosixParser implements ParserInterface
         foreach ($iterator as $argument) {
             $argument = trim($argument);
 
-            if ($terminated === true) {
+            if ($terminated) {
                 $operand = $this->getOperand($definition, $operandPosition++, $strict);
                 if ($operand instanceof OperandInterface) {
                     $parsed[$operand->getName()] = $argument;
@@ -82,23 +82,23 @@ class PosixParser implements ParserInterface
                 $option = $this->getOption($definition, $long[0], true, $strict);
                 if ($option instanceof OptionInterface) {
                     $name = $option->getName();
-                    if ($option->isFlag() === true) {
-                        if ($hasArgument === true) {
+                    if ($option->isFlag()) {
+                        if ($hasArgument) {
                             throw new ArgumentNotAllowed($option, true);
                         }
 
-                        if ($option->isMultiple() === true) {
+                        if ($option->isMultiple()) {
                             $parsed[$name] = ($parsed[$name] ?? 0) + 1;
                         } else {
                             $parsed[$name] = true;
                         }
-                    } elseif ($hasArgument === true) {
+                    } elseif ($hasArgument) {
                         $parsed[$name] = $long[1];
                     } else {
                         $iterator->next();
-                        if ($iterator->valid() === true) {
+                        if ($iterator->valid()) {
                             $parsed[$name] = $iterator->current();
-                        } elseif ($option->isFlag() === false) {
+                        } else {
                             throw new MissingArgument($option, true);
                         }
                     }
@@ -113,8 +113,8 @@ class PosixParser implements ParserInterface
                     $option = $this->getOption($definition, $part, false, $strict);
                     if ($option instanceof OptionInterface) {
                         $name = $option->getName();
-                        if ($option->isFlag() === true) {
-                            if ($option->isMultiple() === true) {
+                        if ($option->isFlag()) {
+                            if ($option->isMultiple()) {
                                 $parsed[$name] = ($parsed[$name] ?? 0) + 1;
                             } else {
                                 $parsed[$name] = true;
@@ -130,9 +130,9 @@ class PosixParser implements ParserInterface
                             break;
                         } else {
                             $iterator->next();
-                            if ($iterator->valid() === true) {
+                            if ($iterator->valid()) {
                                 $parsed[$name] = $iterator->current();
-                            } elseif ($option->isFlag() === false) {
+                            } else {
                                 throw new MissingArgument($option);
                             }
                         }
@@ -158,20 +158,18 @@ class PosixParser implements ParserInterface
     /**
      * Get operand at $position from $definition.
      *
-     * When $strict is true, an exception will be (re)thrown when operand doesn't exist.
-     *
      * @param DefinitionInterface $definition
      * @param int                 $position
      * @param bool                $strict
      * @return OperandInterface|null
-     * @throws DefinitionException
+     * @throws DefinitionException When $strict is true and operand doesn't exist.
      */
     protected function getOperand(DefinitionInterface $definition, int $position, bool $strict): ?OperandInterface
     {
         try {
             $operand = $definition->getOperand($position);
         } catch (DefinitionException $exception) {
-            if ($strict === true) {
+            if ($strict) {
                 throw $exception;
             }
         }
@@ -182,14 +180,12 @@ class PosixParser implements ParserInterface
     /**
      * Get option $name from $definition.
      *
-     * When $strict is true, an exception will be (re)thrown when option doesn't exist.
-     *
      * @param DefinitionInterface $definition
      * @param string              $name
      * @param bool                $long
      * @param bool                $strict
      * @return OptionInterface|null
-     * @throws DefinitionException
+     * @throws DefinitionException When $strict is true and option doesn't exist.
      */
     protected function getOption(
         DefinitionInterface $definition,
@@ -200,7 +196,7 @@ class PosixParser implements ParserInterface
         try {
             $option = $definition->getOption($name, $long);
         } catch (DefinitionException $exception) {
-            if ($strict === true) {
+            if ($strict) {
                 throw $exception;
             }
         }

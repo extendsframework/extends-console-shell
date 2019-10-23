@@ -56,7 +56,6 @@ class Command implements CommandInterface
     }
 
     /**
-     * /**
      * @inheritDoc
      */
     public function getName(): string

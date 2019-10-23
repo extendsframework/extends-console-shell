@@ -25,23 +25,19 @@ interface DefinitionInterface
     /**
      * Get option for $name.
      *
-     * Throws an exception when option with short $name is not found.
-     *
      * @param string    $name
      * @param bool|null $long
      * @return OptionInterface
-     * @throws DefinitionException
+     * @throws DefinitionException When option with short $name is not found.
      */
     public function getOption(string $name, bool $long = null): OptionInterface;
 
     /**
      * Get operand for $position.
      *
-     * Throws an exception when operand at $position is not found.
-     *
      * @param int $position
      * @return OperandInterface
-     * @throws DefinitionException
+     * @throws DefinitionException When operand at $position is not found.
      */
     public function getOperand(int $position): OperandInterface;
 }

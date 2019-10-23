@@ -58,7 +58,7 @@ class Option implements OptionInterface
      * @param string|null $long
      * @param bool|null   $isFlag
      * @param bool|null   $isMultiple
-     * @throws NoShortAndLongName
+     * @throws NoShortAndLongName When both short and long name are not given.
      */
     public function __construct(
         string $name,

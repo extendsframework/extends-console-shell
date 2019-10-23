@@ -9,7 +9,7 @@ use ExtendsFramework\Shell\Parser\ParserException;
 class MissingOperand extends Exception implements ParserException
 {
     /**
-     * Required operand ...
+     * Required operand is missing.
      *
      * @param string $name
      */

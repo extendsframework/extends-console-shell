@@ -25,7 +25,7 @@ class ShellResult implements ShellResultInterface
      * Create new shell result.
      *
      * @param CommandInterface $command
-     * @param                  $data
+     * @param array            $data
      */
     public function __construct(CommandInterface $command, array $data)
     {

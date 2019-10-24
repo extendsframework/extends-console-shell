@@ -391,6 +391,74 @@ class DescriptorTest extends TestCase
     }
 
     /**
+     * Command long without operands and options.
+     *
+     * Test that descriptor can describe command (long) without operands and options.
+     *
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::__construct()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::command()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOutput()
+     * @covers \ExtendsFramework\Shell\Descriptor\Descriptor::getOptionNotation()
+     */
+    public function testCommandLongWithoutOperandsAndOptions(): void
+    {
+        $output = new OutputStub();
+
+        $definition = $this->createMock(DefinitionInterface::class);
+        $definition
+            ->expects($this->once())
+            ->method('getOptions')
+            ->willReturn([]);
+
+        $definition
+            ->expects($this->once())
+            ->method('getOperands')
+            ->willReturn([]);
+
+        $command = $this->createMock(CommandInterface::class);
+        $command
+            ->expects($this->once())
+            ->method('getName')
+            ->willReturn('do.task');
+
+        $command
+            ->expects($this->once())
+            ->method('getDefinition')
+            ->willReturn($definition);
+
+        $about = $this->createMock(AboutInterface::class);
+        $about
+            ->method('getName')
+            ->willReturn('Extends Framework Console');
+
+        $about
+            ->method('getProgram')
+            ->willReturn('extends');
+
+        $about
+            ->method('getVersion')
+            ->willReturn('0.1');
+
+        /**
+         * @var CommandInterface $command
+         * @var AboutInterface   $about
+         */
+        $descriptor = new Descriptor($output);
+        $instance = $descriptor->command($about, $command);
+
+        $this->assertSame($descriptor, $instance);
+        $this->assertSame([
+            0 => 'Extends Framework Console (version 0.1)',
+            1 => '',
+            2 => 'Usage:',
+            3 => '',
+            4 => 'extends do.task ',
+            5 => '',
+            6 => 'See \'extends --help\' for more information about this shell and default options.',
+        ], $output->getBuffer());
+    }
+
+    /**
      * Suggest.
      *
      * Test that descriptor can suggest.

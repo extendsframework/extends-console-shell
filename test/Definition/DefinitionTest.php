@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace ExtendsFramework\Shell\Definition;
 
+use ExtendsFramework\Shell\Definition\Exception\OperandNotFound;
+use ExtendsFramework\Shell\Definition\Exception\OptionNotFound;
 use ExtendsFramework\Shell\Definition\Operand\OperandInterface;
 use ExtendsFramework\Shell\Definition\Option\OptionInterface;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +27,7 @@ class DefinitionTest extends TestCase
     {
         $short = $this->createMock(OptionInterface::class);
         $short
-            ->expects($this->exactly(1))
+            ->expects($this->once())
             ->method('getShort')
             ->willReturn('f');
 
@@ -68,13 +70,14 @@ class DefinitionTest extends TestCase
      *
      * Test that short option ('f') can not be found and an exception will be thrown.
      *
-     * @covers                   \ExtendsFramework\Shell\Definition\Definition::getOption()
-     * @covers                   \ExtendsFramework\Shell\Definition\Exception\OptionNotFound::__construct()
-     * @expectedException        \ExtendsFramework\Shell\Definition\Exception\OptionNotFound
-     * @expectedExceptionMessage No short option found for name "-f".
+     * @covers \ExtendsFramework\Shell\Definition\Definition::getOption()
+     * @covers \ExtendsFramework\Shell\Definition\Exception\OptionNotFound::__construct()
      */
     public function testOptionNotFound(): void
     {
+        $this->expectException(OptionNotFound::class);
+        $this->expectExceptionMessage('No short option found for name "-f".');
+
         $definition = new Definition();
         $definition->getOption('f');
     }
@@ -84,13 +87,14 @@ class DefinitionTest extends TestCase
      *
      * Test that long option ('force') can not be found and an exception will be thrown.
      *
-     * @covers                   \ExtendsFramework\Shell\Definition\Definition::getOption()
-     * @covers                   \ExtendsFramework\Shell\Definition\Exception\OptionNotFound::__construct()
-     * @expectedException        \ExtendsFramework\Shell\Definition\Exception\OptionNotFound
-     * @expectedExceptionMessage No long option found for name "--force".
+     * @covers \ExtendsFramework\Shell\Definition\Definition::getOption()
+     * @covers \ExtendsFramework\Shell\Definition\Exception\OptionNotFound::__construct()
      */
     public function testCanNotGetLongOption(): void
     {
+        $this->expectException(OptionNotFound::class);
+        $this->expectExceptionMessage('No long option found for name "--force".');
+
         $definition = new Definition();
         $definition->getOption('force', true);
     }
@@ -100,13 +104,14 @@ class DefinitionTest extends TestCase
      *
      * Test that long option for position (0) can not be found and an exception will be thrown.
      *
-     * @covers                   \ExtendsFramework\Shell\Definition\Definition::getOperand()
-     * @covers                   \ExtendsFramework\Shell\Definition\Exception\OperandNotFound::__construct()
-     * @expectedException        \ExtendsFramework\Shell\Definition\Exception\OperandNotFound
-     * @expectedExceptionMessage No operand found for position "0".
+     * @covers \ExtendsFramework\Shell\Definition\Definition::getOperand()
+     * @covers \ExtendsFramework\Shell\Definition\Exception\OperandNotFound::__construct()
      */
     public function testCanNotGetOperand(): void
     {
+        $this->expectException(OperandNotFound::class);
+        $this->expectExceptionMessage('No operand found for position "0".');
+
         $definition = new Definition();
         $definition->getOperand(0);
     }

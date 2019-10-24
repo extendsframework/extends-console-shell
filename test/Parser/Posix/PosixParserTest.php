@@ -8,7 +8,9 @@ use ExtendsFramework\Shell\Definition\Exception\OperandNotFound;
 use ExtendsFramework\Shell\Definition\Exception\OptionNotFound;
 use ExtendsFramework\Shell\Definition\Operand\OperandInterface;
 use ExtendsFramework\Shell\Definition\Option\OptionInterface;
-use ExtendsFramework\Shell\Parser\ParseResultInterface;
+use ExtendsFramework\Shell\Parser\Posix\Exception\ArgumentNotAllowed;
+use ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument;
+use ExtendsFramework\Shell\Parser\Posix\Exception\MissingOperand;
 use PHPUnit\Framework\TestCase;
 
 class PosixParserTest extends TestCase
@@ -57,13 +59,10 @@ class PosixParserTest extends TestCase
             '-l=Doe',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'first' => 'John',
-                'last' => 'Doe',
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'first' => 'John',
+            'last' => 'Doe',
+        ], $result->getParsed());
     }
 
     /**
@@ -104,12 +103,9 @@ class PosixParserTest extends TestCase
             'John Doe',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'name' => 'John Doe',
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'name' => 'John Doe',
+        ], $result->getParsed());
     }
 
     /**
@@ -160,13 +156,10 @@ class PosixParserTest extends TestCase
             '-b',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'foo' => true,
-                'bar' => true,
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'foo' => true,
+            'bar' => true,
+        ], $result->getParsed());
     }
 
     /**
@@ -222,12 +215,9 @@ class PosixParserTest extends TestCase
             '-v',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'verbose' => 3,
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'verbose' => 3,
+        ], $result->getParsed());
     }
 
     /**
@@ -235,15 +225,16 @@ class PosixParserTest extends TestCase
      *
      * Test that an exception is thrown when the argument for a required short option is missing.
      *
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument::__construct()
-     * @expectedException        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument
-     * @expectedExceptionMessage Short option "-f" requires an argument, non given.
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument::__construct()
      */
     public function testRequiredShortOptionWithoutArgument(): void
     {
+        $this->expectException(MissingArgument::class);
+        $this->expectExceptionMessage('Short option "-f" requires an argument, non given.');
+
         $option = $this->createMock(OptionInterface::class);
         $option
             ->expects($this->once())
@@ -327,14 +318,11 @@ class PosixParserTest extends TestCase
             'quux',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'foo' => true,
-                'bar' => true,
-                'qux' => 'quux',
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'foo' => true,
+            'bar' => true,
+            'qux' => 'quux',
+        ], $result->getParsed());
     }
 
     /**
@@ -374,12 +362,9 @@ class PosixParserTest extends TestCase
             '--name=John Doe',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'name' => 'John Doe',
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'name' => 'John Doe',
+        ], $result->getParsed());
     }
 
     /**
@@ -420,12 +405,9 @@ class PosixParserTest extends TestCase
             'John Doe',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'name' => 'John Doe',
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'name' => 'John Doe',
+        ], $result->getParsed());
     }
 
     /**
@@ -465,12 +447,9 @@ class PosixParserTest extends TestCase
             '--force',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'force' => true,
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'force' => true,
+        ], $result->getParsed());
     }
 
     /**
@@ -517,12 +496,9 @@ class PosixParserTest extends TestCase
             '--verbose',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'verbose' => 2,
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'verbose' => 2,
+        ], $result->getParsed());
     }
 
     /**
@@ -530,15 +506,16 @@ class PosixParserTest extends TestCase
      *
      * Test that long option flag ('--name=John Doe') can not be parsed and an exception will be thrown.
      *
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\Exception\ArgumentNotAllowed::__construct()
-     * @expectedException        \ExtendsFramework\Shell\Parser\Posix\Exception\ArgumentNotAllowed
-     * @expectedExceptionMessage Long option argument is not allowed for flag "--name".
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\Exception\ArgumentNotAllowed::__construct()
      */
     public function testLongOptionFlagWithArgument(): void
     {
+        $this->expectException(ArgumentNotAllowed::class);
+        $this->expectExceptionMessage('Long option argument is not allowed for flag "--name".');
+
         $option = $this->createMock(OptionInterface::class);
         $option
             ->expects($this->once())
@@ -571,15 +548,16 @@ class PosixParserTest extends TestCase
      *
      * Test that long option ('--name') without required argument will throw an exception.
      *
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument::__construct()
-     * @expectedException        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument
-     * @expectedExceptionMessage Long option "--name" requires an argument, non given.
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument::__construct()
      */
     public function testLongOptionWithoutArgument(): void
     {
+        $this->expectException(MissingArgument::class);
+        $this->expectExceptionMessage('Long option "--name" requires an argument, non given.');
+
         $option = $this->createMock(OptionInterface::class);
         $option
             ->expects($this->once())
@@ -646,12 +624,9 @@ class PosixParserTest extends TestCase
             'John Doe',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'name.first' => 'John Doe',
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'name.first' => 'John Doe',
+        ], $result->getParsed());
     }
 
     /**
@@ -747,21 +722,18 @@ class PosixParserTest extends TestCase
             'Jane Doe',
         ], false);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'force' => 1,
-                'name' => 'John Doe',
-                'quite' => true,
-            ], $result->getParsed());
+        $this->assertSame([
+            'force' => 1,
+            'name' => 'John Doe',
+            'quite' => true,
+        ], $result->getParsed());
 
-            $this->assertSame([
-                '-xf',
-                '-ab',
-                '--help',
-                'Jane Doe',
-            ], $result->getRemaining());
-        }
+        $this->assertSame([
+            '-xf',
+            '-ab',
+            '--help',
+            'Jane Doe',
+        ], $result->getRemaining());
     }
 
     /**
@@ -769,15 +741,16 @@ class PosixParserTest extends TestCase
      *
      * Test that missing operand can not be parsed and an exception will be thrown.
      *
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOperand()
-     * @covers                   \ExtendsFramework\Shell\Parser\Posix\Exception\MissingOperand::__construct()
-     * @expectedException        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingOperand
-     * @expectedExceptionMessage Operand "name.first" is required.
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOperand()
+     * @covers        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingOperand::__construct()
      */
     public function testMissingOperand(): void
     {
+        $this->expectException(MissingOperand::class);
+        $this->expectExceptionMessage('Operand "name.first" is required.');
+
         $operand = $this->createMock(OperandInterface::class);
         $operand
             ->expects($this->once())
@@ -804,13 +777,14 @@ class PosixParserTest extends TestCase
      *
      * Test that an unknown operand can not be parsed and an exception will be thrown.
      *
-     * @covers            \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers            \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers            \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOperand()
-     * @expectedException \ExtendsFramework\Shell\Definition\Exception\OperandNotFound
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOperand()
      */
     public function testUnknownOperand(): void
     {
+        $this->expectException(OperandNotFound::class);
+
         /**
          * @var OperandNotFound $exception
          */
@@ -837,13 +811,14 @@ class PosixParserTest extends TestCase
      *
      * Test that an unknown option can not be parsed and will throw an exception.
      *
-     * @covers            \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers            \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers            \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
-     * @expectedException \ExtendsFramework\Shell\Definition\Exception\OptionNotFound
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
      */
     public function testUnknownOption(): void
     {
+        $this->expectException(OptionNotFound::class);
+
         /**
          * @var OptionNotFound $exception
          */
@@ -911,12 +886,9 @@ class PosixParserTest extends TestCase
             '--Doe',
         ]);
 
-        $this->assertInstanceOf(ParseResultInterface::class, $result);
-        if ($result instanceof ParseResultInterface) {
-            $this->assertSame([
-                'first' => '-John',
-                'last' => '--Doe',
-            ], $result->getParsed());
-        }
+        $this->assertSame([
+            'first' => '-John',
+            'last' => '--Doe',
+        ], $result->getParsed());
     }
 }

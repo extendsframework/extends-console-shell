@@ -67,6 +67,6 @@ class ShellBuilderTest extends TestCase
             ])
             ->build();
 
-        $this->assertInstanceOf(ShellInterface::class, $shell);
+        $this->assertIsObject($shell);
     }
 }

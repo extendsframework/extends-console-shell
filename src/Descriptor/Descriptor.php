@@ -45,7 +45,7 @@ class Descriptor implements DescriptorInterface
         $output = $this->getOutput();
         $formatter = $output->getFormatter();
 
-        if ($short === true) {
+        if ($short) {
             $output
                 ->newLine()
                 ->line(sprintf(
@@ -80,7 +80,7 @@ class Descriptor implements DescriptorInterface
             ->line('Commands:')
             ->newLine();
 
-        if (empty($commands) === true) {
+        if (empty($commands)) {
             $output->line(
                 'No commands defined.',
                 $formatter
@@ -144,7 +144,7 @@ class Descriptor implements DescriptorInterface
         $formatter = $output->getFormatter();
         $definition = $command->getDefinition();
 
-        if ($short === true) {
+        if ($short) {
             $output
                 ->newLine()
                 ->line(sprintf(
@@ -181,7 +181,7 @@ class Descriptor implements DescriptorInterface
             ));
 
         $operands = $definition->getOperands();
-        if (empty($operands) === false) {
+        if (!empty($operands)) {
             foreach ($operands as $operand) {
                 $output->text(sprintf(
                     '<%s> ',
@@ -191,7 +191,7 @@ class Descriptor implements DescriptorInterface
         }
 
         $options = $definition->getOptions();
-        if (empty($options) === false) {
+        if (!empty($options)) {
             $output
                 ->line('[<options>] ')
                 ->newLine()

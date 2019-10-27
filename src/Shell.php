@@ -131,7 +131,7 @@ class Shell implements ShellInterface
         }
 
         $help = $parsed['help'] ?? false;
-        if ($help === true) {
+        if ($help) {
             $descriptor->command($about, $command);
 
             return null;

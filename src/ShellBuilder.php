@@ -143,6 +143,84 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
+     * Set shell name.
+     *
+     * @param string|null $name
+     * @return ShellBuilder
+     */
+    public function setName($name = null): ShellBuilder
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Set command to run shell.
+     *
+     * @param string|null $program
+     * @return ShellBuilder
+     */
+    public function setProgram($program = null): ShellBuilder
+    {
+        $this->program = $program;
+
+        return $this;
+    }
+
+    /**
+     * Set shell version.
+     *
+     * @param string|null $version
+     * @return ShellBuilder
+     */
+    public function setVersion($version = null): ShellBuilder
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Set shell descriptor.
+     *
+     * @param DescriptorInterface|null $descriptor
+     * @return ShellBuilder
+     */
+    public function setDescriptor($descriptor = null): ShellBuilder
+    {
+        $this->descriptor = $descriptor;
+
+        return $this;
+    }
+
+    /**
+     * Set command suggester.
+     *
+     * @param SuggesterInterface|null $suggester
+     * @return ShellBuilder
+     */
+    public function setSuggester($suggester = null): ShellBuilder
+    {
+        $this->suggester = $suggester;
+
+        return $this;
+    }
+
+    /**
+     * Set argument parser.
+     *
+     * @param ParserInterface|null $parser
+     * @return ShellBuilder
+     */
+    public function setParser($parser = null): ShellBuilder
+    {
+        $this->parser = $parser;
+
+        return $this;
+    }
+
+    /**
      * Get commands.
      *
      * @return CommandInterface[]
@@ -163,19 +241,6 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
-     * Set shell name.
-     *
-     * @param string|null $name
-     * @return ShellBuilder
-     */
-    public function setName($name = null): ShellBuilder
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
      * Get program to run shell.
      *
      * @return string|null
@@ -183,19 +248,6 @@ class ShellBuilder implements ShellBuilderInterface
     private function getProgram(): ?string
     {
         return $this->program ?: 'extends';
-    }
-
-    /**
-     * Set command to run shell.
-     *
-     * @param string|null $program
-     * @return ShellBuilder
-     */
-    public function setProgram($program = null): ShellBuilder
-    {
-        $this->program = $program;
-
-        return $this;
     }
 
     /**
@@ -209,19 +261,6 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
-     * Set shell version.
-     *
-     * @param string|null $version
-     * @return ShellBuilder
-     */
-    public function setVersion($version = null): ShellBuilder
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    /**
      * Get shell descriptor.
      *
      * @return DescriptorInterface|null
@@ -229,19 +268,6 @@ class ShellBuilder implements ShellBuilderInterface
     private function getDescriptor(): ?DescriptorInterface
     {
         return $this->descriptor ?: new Descriptor(new PosixOutput());
-    }
-
-    /**
-     * Set shell descriptor.
-     *
-     * @param DescriptorInterface|null $descriptor
-     * @return ShellBuilder
-     */
-    public function setDescriptor($descriptor = null): ShellBuilder
-    {
-        $this->descriptor = $descriptor;
-
-        return $this;
     }
 
     /**
@@ -255,19 +281,6 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
-     * Set command suggester.
-     *
-     * @param SuggesterInterface|null $suggester
-     * @return ShellBuilder
-     */
-    public function setSuggester($suggester = null): ShellBuilder
-    {
-        $this->suggester = $suggester;
-
-        return $this;
-    }
-
-    /**
      * Get argument parser.
      *
      * @return ParserInterface|null
@@ -278,31 +291,20 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
-     * Set argument parser.
-     *
-     * @param ParserInterface|null $parser
-     * @return ShellBuilder
-     */
-    public function setParser($parser = null): ShellBuilder
-    {
-        $this->parser = $parser;
-
-        return $this;
-    }
-
-    /**
      * Reset builder after build.
      *
      * @return ShellBuilder
      */
     private function reset(): ShellBuilder
     {
-        $this->name = null;
-        $this->program = null;
-        $this->version = null;
-        $this->descriptor = null;
-        $this->suggester = null;
-        $this->parser = null;
+        $this
+            ->setName()
+            ->setProgram()
+            ->setVersion()
+            ->setDescriptor()
+            ->setSuggester()
+            ->setParser();
+
         $this->commands = [];
 
         return $this;

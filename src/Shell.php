@@ -58,7 +58,7 @@ class Shell implements ShellInterface
      *
      * @var CommandInterface[]
      */
-    private $commands;
+    private $commands = [];
 
     /**
      * Create a new Shell.
@@ -78,7 +78,6 @@ class Shell implements ShellInterface
         $this->suggester = $suggester;
         $this->parser = $parser;
         $this->about = $about;
-        $this->commands = [];
     }
 
     /**
@@ -87,18 +86,15 @@ class Shell implements ShellInterface
      */
     public function process(array $arguments): ?ShellResultInterface
     {
-        $about = $this->getAbout();
-        $parser = $this->getParser();
-        $commands = $this->getCommands();
-        $definition = $this->getDefinition();
-        $descriptor = $this->getDescriptor();
-
         try {
-            $defaults = $parser->parse($definition, $arguments, false);
+            $defaults = $this
+                ->getParser()
+                ->parse($this->getDefinition(), $arguments, false);
         } catch (ParserException | DefinitionException $exception) {
-            $descriptor
+            $this
+                ->getDescriptor()
                 ->exception($exception)
-                ->shell($about, $definition, $commands, true);
+                ->shell($this->getAbout(), $this->getDefinition(), $this->getCommands(), true);
 
             return null;
         }
@@ -106,11 +102,15 @@ class Shell implements ShellInterface
         $remaining = $defaults->getRemaining();
         $parsed = $defaults->getParsed();
 
-        $descriptor->setVerbosity($parsed['verbose'] ?? 1);
+        $this
+            ->getDescriptor()
+            ->setVerbosity($parsed['verbose'] ?? 1);
 
         $name = array_shift($remaining);
         if ($name === null) {
-            $descriptor->shell($about, $definition, $commands);
+            $this
+                ->getDescriptor()
+                ->shell($this->getAbout(), $this->getDefinition(), $this->getCommands());
 
             return null;
         }
@@ -118,39 +118,45 @@ class Shell implements ShellInterface
         try {
             $command = $this->getCommand($name);
         } catch (CommandNotFound $exception) {
-            $descriptor
+            $this
+                ->getDescriptor()
                 ->exception($exception)
                 ->suggest(
                     $this
                         ->getSuggester()
-                        ->suggest($name, ...$commands)
+                        ->suggest($name, ...$this->getCommands())
                 )
-                ->shell($about, $definition, $commands, true);
+                ->shell($this->getAbout(), $this->getDefinition(), $this->getCommands(), true);
 
             return null;
         }
 
         $help = $parsed['help'] ?? false;
         if ($help) {
-            $descriptor->command($about, $command);
+            $this
+                ->getDescriptor()
+                ->command($this->getAbout(), $command);
 
             return null;
         }
 
         try {
-            $result = $parser->parse(
-                $command->getDefinition(),
-                $remaining
-            );
+            $result = $this
+                ->getParser()
+                ->parse(
+                    $command->getDefinition(),
+                    $remaining
+                );
 
             return new ShellResult(
                 $command,
                 $result->getParsed()
             );
         } catch (ParserException | DefinitionException $exception) {
-            $descriptor
+            $this
+                ->getDescriptor()
                 ->exception($exception)
-                ->command($about, $command, true);
+                ->command($this->getAbout(), $command, true);
 
             return null;
         }

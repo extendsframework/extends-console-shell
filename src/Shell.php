@@ -86,15 +86,19 @@ class Shell implements ShellInterface
      */
     public function process(array $arguments): ?ShellResultInterface
     {
+        $definition = $this->getDefinition();
+        $about = $this->getAbout();
+        $commands = $this->getCommands();
+        $descriptor = $this->getDescriptor();
+
         try {
             $defaults = $this
                 ->getParser()
-                ->parse($this->getDefinition(), $arguments, false);
+                ->parse($definition, $arguments, false);
         } catch (ParserException | DefinitionException $exception) {
-            $this
-                ->getDescriptor()
+            $descriptor
                 ->exception($exception)
-                ->shell($this->getAbout(), $this->getDefinition(), $this->getCommands(), true);
+                ->shell($about, $definition, $commands, true);
 
             return null;
         }
@@ -102,15 +106,11 @@ class Shell implements ShellInterface
         $remaining = $defaults->getRemaining();
         $parsed = $defaults->getParsed();
 
-        $this
-            ->getDescriptor()
-            ->setVerbosity($parsed['verbose'] ?? 1);
+        $descriptor->setVerbosity($parsed['verbose'] ?? 1);
 
         $name = array_shift($remaining);
         if ($name === null) {
-            $this
-                ->getDescriptor()
-                ->shell($this->getAbout(), $this->getDefinition(), $this->getCommands());
+            $descriptor->shell($about, $definition, $commands);
 
             return null;
         }
@@ -118,24 +118,21 @@ class Shell implements ShellInterface
         try {
             $command = $this->getCommand($name);
         } catch (CommandNotFound $exception) {
-            $this
-                ->getDescriptor()
+            $descriptor
                 ->exception($exception)
                 ->suggest(
                     $this
                         ->getSuggester()
-                        ->suggest($name, ...$this->getCommands())
+                        ->suggest($name, ...$commands)
                 )
-                ->shell($this->getAbout(), $this->getDefinition(), $this->getCommands(), true);
+                ->shell($about, $definition, $commands, true);
 
             return null;
         }
 
         $help = $parsed['help'] ?? false;
         if ($help) {
-            $this
-                ->getDescriptor()
-                ->command($this->getAbout(), $command);
+            $descriptor->command($about, $command);
 
             return null;
         }
@@ -153,10 +150,9 @@ class Shell implements ShellInterface
                 $result->getParsed()
             );
         } catch (ParserException | DefinitionException $exception) {
-            $this
-                ->getDescriptor()
+            $descriptor
                 ->exception($exception)
-                ->command($this->getAbout(), $command, true);
+                ->command($about, $command, true);
 
             return null;
         }

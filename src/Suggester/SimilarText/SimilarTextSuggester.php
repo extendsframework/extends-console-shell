@@ -57,6 +57,10 @@ class SimilarTextSuggester implements SuggesterInterface
      */
     private function getPercentage(): int
     {
-        return $this->percentage ?? 60;
+        if ($this->percentage === null) {
+            $this->percentage = 60;
+        }
+
+        return $this->percentage;
     }
 }

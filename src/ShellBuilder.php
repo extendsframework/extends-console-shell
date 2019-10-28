@@ -67,7 +67,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @var CommandInterface[]
      */
-    private $commands = [];
+    private $commands;
 
     /**
      * @inheritDoc
@@ -227,6 +227,10 @@ class ShellBuilder implements ShellBuilderInterface
      */
     private function getCommands(): array
     {
+        if ($this->commands === null) {
+            $this->commands = [];
+        }
+
         return $this->commands;
     }
 
@@ -237,7 +241,11 @@ class ShellBuilder implements ShellBuilderInterface
      */
     private function getName(): ?string
     {
-        return $this->name ?: 'Extends Framework Console';
+        if ($this->name === null) {
+            $this->name = 'Extends Framework Console';
+        }
+
+        return $this->name;
     }
 
     /**
@@ -247,7 +255,11 @@ class ShellBuilder implements ShellBuilderInterface
      */
     private function getProgram(): ?string
     {
-        return $this->program ?: 'extends';
+        if ($this->program === null) {
+            $this->program = 'extends';
+        }
+
+        return $this->program;
     }
 
     /**
@@ -257,7 +269,11 @@ class ShellBuilder implements ShellBuilderInterface
      */
     private function getVersion(): ?string
     {
-        return $this->version ?: '0.1';
+        if ($this->version === null) {
+            $this->version = '0.1';
+        }
+
+        return $this->version;
     }
 
     /**
@@ -267,7 +283,11 @@ class ShellBuilder implements ShellBuilderInterface
      */
     private function getDescriptor(): ?DescriptorInterface
     {
-        return $this->descriptor ?: new Descriptor(new PosixOutput());
+        if ($this->descriptor === null) {
+            $this->descriptor = new Descriptor(new PosixOutput());
+        }
+
+        return $this->descriptor;
     }
 
     /**
@@ -277,7 +297,11 @@ class ShellBuilder implements ShellBuilderInterface
      */
     private function getSuggester(): ?SuggesterInterface
     {
-        return $this->suggester ?: new SimilarTextSuggester();
+        if ($this->suggester === null) {
+            $this->suggester = new SimilarTextSuggester();
+        }
+
+        return $this->suggester;
     }
 
     /**
@@ -287,7 +311,11 @@ class ShellBuilder implements ShellBuilderInterface
      */
     private function getParser(): ?ParserInterface
     {
-        return $this->parser ?: new PosixParser();
+        if ($this->parser === null) {
+            $this->parser = new PosixParser();
+        }
+
+        return $this->parser;
     }
 
     /**

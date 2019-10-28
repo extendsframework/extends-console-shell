@@ -38,14 +38,14 @@ class Option implements OptionInterface
     /**
      * If a argument is allowed.
      *
-     * @var bool
+     * @var bool|null
      */
     private $isFlag;
 
     /**
      * If multiple arguments are allowed.
      *
-     * @var bool
+     * @var bool|null
      */
     private $isMultiple;
 
@@ -76,8 +76,8 @@ class Option implements OptionInterface
         $this->description = $description;
         $this->short = $short;
         $this->long = $long;
-        $this->isFlag = $isFlag ?: true;
-        $this->isMultiple = $isMultiple ?: false;
+        $this->isFlag = $isFlag;
+        $this->isMultiple = $isMultiple;
     }
 
     /**
@@ -117,6 +117,10 @@ class Option implements OptionInterface
      */
     public function isFlag(): bool
     {
+        if ($this->isFlag === null) {
+            $this->isFlag = true;
+        }
+
         return $this->isFlag;
     }
 
@@ -125,6 +129,10 @@ class Option implements OptionInterface
      */
     public function isMultiple(): bool
     {
+        if ($this->isMultiple === null) {
+            $this->isMultiple = false;
+        }
+
         return $this->isMultiple;
     }
 }

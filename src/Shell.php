@@ -8,7 +8,6 @@ use ExtendsFramework\Shell\Command\CommandInterface;
 use ExtendsFramework\Shell\Definition\Definition;
 use ExtendsFramework\Shell\Definition\DefinitionException;
 use ExtendsFramework\Shell\Definition\DefinitionInterface;
-use ExtendsFramework\Shell\Definition\Option\Exception\NoShortAndLongName;
 use ExtendsFramework\Shell\Definition\Option\Option;
 use ExtendsFramework\Shell\Descriptor\DescriptorInterface;
 use ExtendsFramework\Shell\Exception\CommandNotFound;
@@ -67,6 +66,7 @@ class Shell implements ShellInterface
      * @param SuggesterInterface  $suggester
      * @param ParserInterface     $parser
      * @param AboutInterface      $about
+     * @throws DefinitionException
      */
     public function __construct(
         DescriptorInterface $descriptor,
@@ -79,12 +79,9 @@ class Shell implements ShellInterface
         $this->parser = $parser;
         $this->about = $about;
 
-        try {
-            $this->definition = (new Definition())
-                ->addOption(new Option('verbose', 'Be more verbose.', 'v', 'verbose', true, true))
-                ->addOption(new Option('help', 'Show help about shell or command.', 'h', 'help'));
-        } catch (NoShortAndLongName $exception) {
-        }
+        $this->definition = (new Definition())
+            ->addOption(new Option('verbose', 'Be more verbose.', 'v', 'verbose', true, true))
+            ->addOption(new Option('help', 'Show help about shell or command.', 'h', 'help'));
     }
 
     /**

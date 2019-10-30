@@ -8,6 +8,7 @@ use ExtendsFramework\Shell\About\About;
 use ExtendsFramework\Shell\Command\Command;
 use ExtendsFramework\Shell\Command\CommandInterface;
 use ExtendsFramework\Shell\Definition\Definition;
+use ExtendsFramework\Shell\Definition\DefinitionException;
 use ExtendsFramework\Shell\Definition\Operand\Operand;
 use ExtendsFramework\Shell\Definition\Option\Exception\NoShortAndLongName;
 use ExtendsFramework\Shell\Definition\Option\Option;
@@ -71,6 +72,7 @@ class ShellBuilder implements ShellBuilderInterface
 
     /**
      * @inheritDoc
+     * @throws DefinitionException
      */
     public function build(): ShellInterface
     {

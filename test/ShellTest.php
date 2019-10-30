@@ -178,6 +178,7 @@ class ShellTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Shell::__construct()
      * @covers \ExtendsFramework\Shell\Shell::process()
+     * @covers \ExtendsFramework\Shell\Shell::getCommand()
      * @covers \ExtendsFramework\Shell\Exception\CommandNotFound::__construct()
      */
     public function testCommandNotFound(): void

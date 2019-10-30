@@ -24,11 +24,6 @@ class ShellTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Shell::__construct()
      * @covers \ExtendsFramework\Shell\Shell::process()
-     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
-     * @covers \ExtendsFramework\Shell\Shell::getCommands()
-     * @covers \ExtendsFramework\Shell\Shell::getAbout()
-     * @covers \ExtendsFramework\Shell\Shell::getParser()
-     * @covers \ExtendsFramework\Shell\Shell::getDescriptor()
      */
     public function testInvalidDefaultParameter(): void
     {
@@ -78,11 +73,6 @@ class ShellTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Shell::__construct()
      * @covers \ExtendsFramework\Shell\Shell::process()
-     * @covers \ExtendsFramework\Shell\Shell::getCommands()
-     * @covers \ExtendsFramework\Shell\Shell::getAbout()
-     * @covers \ExtendsFramework\Shell\Shell::getParser()
-     * @covers \ExtendsFramework\Shell\Shell::getDescriptor()
-     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
      */
     public function testNoRemainingArguments(): void
     {
@@ -133,11 +123,6 @@ class ShellTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Shell::__construct()
      * @covers \ExtendsFramework\Shell\Shell::process()
-     * @covers \ExtendsFramework\Shell\Shell::getCommands()
-     * @covers \ExtendsFramework\Shell\Shell::getAbout()
-     * @covers \ExtendsFramework\Shell\Shell::getParser()
-     * @covers \ExtendsFramework\Shell\Shell::getDescriptor()
-     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
      */
     public function testVerbosity(): void
     {
@@ -193,13 +178,6 @@ class ShellTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Shell::__construct()
      * @covers \ExtendsFramework\Shell\Shell::process()
-     * @covers \ExtendsFramework\Shell\Shell::getCommands()
-     * @covers \ExtendsFramework\Shell\Shell::getAbout()
-     * @covers \ExtendsFramework\Shell\Shell::getParser()
-     * @covers \ExtendsFramework\Shell\Shell::getDescriptor()
-     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
-     * @covers \ExtendsFramework\Shell\Shell::getCommand()
-     * @covers \ExtendsFramework\Shell\Shell::getSuggester()
      * @covers \ExtendsFramework\Shell\Exception\CommandNotFound::__construct()
      */
     public function testCommandNotFound(): void
@@ -269,12 +247,6 @@ class ShellTest extends TestCase
      * @covers \ExtendsFramework\Shell\Shell::__construct()
      * @covers \ExtendsFramework\Shell\Shell::addCommand()
      * @covers \ExtendsFramework\Shell\Shell::process()
-     * @covers \ExtendsFramework\Shell\Shell::getCommands()
-     * @covers \ExtendsFramework\Shell\Shell::getAbout()
-     * @covers \ExtendsFramework\Shell\Shell::getParser()
-     * @covers \ExtendsFramework\Shell\Shell::getDescriptor()
-     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
-     * @covers \ExtendsFramework\Shell\Shell::getCommand()
      */
     public function testHelpForCommand(): void
     {
@@ -341,12 +313,6 @@ class ShellTest extends TestCase
      * @covers \ExtendsFramework\Shell\Shell::__construct()
      * @covers \ExtendsFramework\Shell\Shell::addCommand()
      * @covers \ExtendsFramework\Shell\Shell::process()
-     * @covers \ExtendsFramework\Shell\Shell::getCommands()
-     * @covers \ExtendsFramework\Shell\Shell::getAbout()
-     * @covers \ExtendsFramework\Shell\Shell::getParser()
-     * @covers \ExtendsFramework\Shell\Shell::getDescriptor()
-     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
-     * @covers \ExtendsFramework\Shell\Shell::getCommand()
      */
     public function testMatchedCommand(): void
     {
@@ -445,11 +411,6 @@ class ShellTest extends TestCase
      * @covers \ExtendsFramework\Shell\Shell::__construct()
      * @covers \ExtendsFramework\Shell\Shell::addCommand()
      * @covers \ExtendsFramework\Shell\Shell::process()
-     * @covers \ExtendsFramework\Shell\Shell::getCommands()
-     * @covers \ExtendsFramework\Shell\Shell::getAbout()
-     * @covers \ExtendsFramework\Shell\Shell::getParser()
-     * @covers \ExtendsFramework\Shell\Shell::getDescriptor()
-     * @covers \ExtendsFramework\Shell\Shell::getDefinition()
      * @covers \ExtendsFramework\Shell\Shell::getCommand()
      */
     public function testFailedCommand(): void

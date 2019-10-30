@@ -75,17 +75,17 @@ class ShellBuilder implements ShellBuilderInterface
     public function build(): ShellInterface
     {
         $shell = new Shell(
-            $this->getDescriptor(),
-            $this->getSuggester(),
-            $this->getParser(),
+            $this->descriptor ?: new Descriptor(new PosixOutput()),
+            $this->suggester ?: new SimilarTextSuggester(),
+            $this->parser ?: new PosixParser(),
             new About(
-                $this->getName(),
-                $this->getProgram(),
-                $this->getVersion()
+                $this->name ?: 'Extends Framework Console',
+                $this->program ?: 'extends',
+                $this->version ?: '0.1'
             )
         );
 
-        foreach ($this->getCommands() as $command) {
+        foreach ($this->commands as $command) {
             $shell->addCommand($command);
         }
 
@@ -132,12 +132,7 @@ class ShellBuilder implements ShellBuilderInterface
             );
         }
 
-        $this->commands[] = new Command(
-            $name,
-            $description,
-            $definition,
-            $parameters
-        );
+        $this->commands[] = new Command($name, $description, $definition, $parameters);
 
         return $this;
     }
@@ -221,118 +216,18 @@ class ShellBuilder implements ShellBuilderInterface
     }
 
     /**
-     * Get commands.
-     *
-     * @return CommandInterface[]
-     */
-    private function getCommands(): array
-    {
-        if ($this->commands === null) {
-            $this->commands = [];
-        }
-
-        return $this->commands;
-    }
-
-    /**
-     * Get shell name.
-     *
-     * @return string|null
-     */
-    private function getName(): ?string
-    {
-        if ($this->name === null) {
-            $this->name = 'Extends Framework Console';
-        }
-
-        return $this->name;
-    }
-
-    /**
-     * Get program to run shell.
-     *
-     * @return string|null
-     */
-    private function getProgram(): ?string
-    {
-        if ($this->program === null) {
-            $this->program = 'extends';
-        }
-
-        return $this->program;
-    }
-
-    /**
-     * Get shell version.
-     *
-     * @return string|null
-     */
-    private function getVersion(): ?string
-    {
-        if ($this->version === null) {
-            $this->version = '0.1';
-        }
-
-        return $this->version;
-    }
-
-    /**
-     * Get shell descriptor.
-     *
-     * @return DescriptorInterface|null
-     */
-    private function getDescriptor(): ?DescriptorInterface
-    {
-        if ($this->descriptor === null) {
-            $this->descriptor = new Descriptor(new PosixOutput());
-        }
-
-        return $this->descriptor;
-    }
-
-    /**
-     * Get command suggester.
-     *
-     * @return SuggesterInterface|null
-     */
-    private function getSuggester(): ?SuggesterInterface
-    {
-        if ($this->suggester === null) {
-            $this->suggester = new SimilarTextSuggester();
-        }
-
-        return $this->suggester;
-    }
-
-    /**
-     * Get argument parser.
-     *
-     * @return ParserInterface|null
-     */
-    private function getParser(): ?ParserInterface
-    {
-        if ($this->parser === null) {
-            $this->parser = new PosixParser();
-        }
-
-        return $this->parser;
-    }
-
-    /**
      * Reset builder after build.
      *
      * @return ShellBuilder
      */
     private function reset(): ShellBuilder
     {
-        $this
-            ->setName()
-            ->setProgram()
-            ->setVersion()
-            ->setDescriptor()
-            ->setSuggester()
-            ->setParser();
-
+        $this->name = null;
+        $this->program = null;
+        $this->version = null;
+        $this->descriptor = null;
+        $this->suggester = null;
+        $this->parser = null;
         $this->commands = [];
 
         return $this;

@@ -31,7 +31,7 @@ class Command implements CommandInterface
     /**
      * Extra command parameters.
      *
-     * @var array|null
+     * @var array
      */
     private $parameters;
 
@@ -52,7 +52,7 @@ class Command implements CommandInterface
         $this->name = $name;
         $this->description = $description;
         $this->definition = $definition;
-        $this->parameters = $parameters;
+        $this->parameters = $parameters ?: [];
     }
 
     /**
@@ -84,10 +84,6 @@ class Command implements CommandInterface
      */
     public function getParameters(): array
     {
-        if ($this->parameters === null) {
-            $this->parameters = [];
-        }
-
         return $this->parameters;
     }
 }

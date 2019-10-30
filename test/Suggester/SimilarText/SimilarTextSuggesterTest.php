@@ -15,7 +15,6 @@ class SimilarTextSuggesterTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
      * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::getPercentage()
      */
     public function testBestMatch(): void
     {
@@ -47,7 +46,6 @@ class SimilarTextSuggesterTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
      * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::getPercentage()
      */
     public function testExactMatch(): void
     {
@@ -78,7 +76,6 @@ class SimilarTextSuggesterTest extends TestCase
      *
      * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::__construct()
      * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::suggest()
-     * @covers \ExtendsFramework\Shell\Suggester\SimilarText\SimilarTextSuggester::getPercentage()
      */
     public function testNoMatch(): void
     {

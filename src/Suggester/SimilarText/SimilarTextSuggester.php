@@ -11,7 +11,7 @@ class SimilarTextSuggester implements SuggesterInterface
     /**
      * Lowest percentage to match.
      *
-     * @var int|null
+     * @var int
      */
     private $percentage;
 
@@ -22,7 +22,7 @@ class SimilarTextSuggester implements SuggesterInterface
      */
     public function __construct(int $percentage = null)
     {
-        $this->percentage = $percentage;
+        $this->percentage = $percentage ?: 60;
     }
 
     /**
@@ -35,7 +35,7 @@ class SimilarTextSuggester implements SuggesterInterface
 
         foreach ($commands as $command) {
             similar_text($phrase, $command->getName(), $percentage);
-            if ($percentage >= $this->getPercentage()) {
+            if ($percentage >= $this->percentage) {
                 if ($percentage === 100.0) {
                     return $command;
                 }
@@ -48,19 +48,5 @@ class SimilarTextSuggester implements SuggesterInterface
         }
 
         return $closest;
-    }
-
-    /**
-     * Get percentage.
-     *
-     * @return int
-     */
-    private function getPercentage(): int
-    {
-        if ($this->percentage === null) {
-            $this->percentage = 60;
-        }
-
-        return $this->percentage;
     }
 }

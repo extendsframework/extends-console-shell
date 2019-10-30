@@ -78,27 +78,26 @@ class Shell implements ShellInterface
         $this->suggester = $suggester;
         $this->parser = $parser;
         $this->about = $about;
+
+        try {
+            $this->definition = (new Definition())
+                ->addOption(new Option('verbose', 'Be more verbose.', 'v', 'verbose', true, true))
+                ->addOption(new Option('help', 'Show help about shell or command.', 'h', 'help'));
+        } catch (NoShortAndLongName $exception) {
+        }
     }
 
     /**
      * @inheritDoc
-     * @throws NoShortAndLongName
      */
     public function process(array $arguments): ?ShellResultInterface
     {
-        $definition = $this->getDefinition();
-        $about = $this->getAbout();
-        $commands = $this->getCommands();
-        $descriptor = $this->getDescriptor();
-
         try {
-            $defaults = $this
-                ->getParser()
-                ->parse($definition, $arguments, false);
+            $defaults = $this->parser->parse($this->definition, $arguments, false);
         } catch (ParserException | DefinitionException $exception) {
-            $descriptor
+            $this->descriptor
                 ->exception($exception)
-                ->shell($about, $definition, $commands, true);
+                ->shell($this->about, $this->definition, $this->commands, true);
 
             return null;
         }
@@ -106,11 +105,11 @@ class Shell implements ShellInterface
         $remaining = $defaults->getRemaining();
         $parsed = $defaults->getParsed();
 
-        $descriptor->setVerbosity($parsed['verbose'] ?? 1);
+        $this->descriptor->setVerbosity($parsed['verbose'] ?? 1);
 
         $name = array_shift($remaining);
         if ($name === null) {
-            $descriptor->shell($about, $definition, $commands);
+            $this->descriptor->shell($this->about, $this->definition, $this->commands);
 
             return null;
         }
@@ -118,41 +117,37 @@ class Shell implements ShellInterface
         try {
             $command = $this->getCommand($name);
         } catch (CommandNotFound $exception) {
-            $descriptor
+            $this->descriptor
                 ->exception($exception)
                 ->suggest(
-                    $this
-                        ->getSuggester()
-                        ->suggest($name, ...$commands)
+                    $this->suggester->suggest($name, ...$this->commands)
                 )
-                ->shell($about, $definition, $commands, true);
+                ->shell($this->about, $this->definition, $this->commands, true);
 
             return null;
         }
 
         $help = $parsed['help'] ?? false;
         if ($help) {
-            $descriptor->command($about, $command);
+            $this->descriptor->command($this->about, $command);
 
             return null;
         }
 
         try {
-            $result = $this
-                ->getParser()
-                ->parse(
-                    $command->getDefinition(),
-                    $remaining
-                );
+            $result = $this->parser->parse(
+                $command->getDefinition(),
+                $remaining
+            );
 
             return new ShellResult(
                 $command,
                 $result->getParsed()
             );
         } catch (ParserException | DefinitionException $exception) {
-            $descriptor
+            $this->descriptor
                 ->exception($exception)
-                ->command($about, $command, true);
+                ->command($this->about, $command, true);
 
             return null;
         }
@@ -189,72 +184,5 @@ class Shell implements ShellInterface
         }
 
         throw new CommandNotFound($name);
-    }
-
-    /**
-     * Get definition for default options.
-     *
-     * @return DefinitionInterface
-     * @throws NoShortAndLongName
-     */
-    private function getDefinition(): DefinitionInterface
-    {
-        if ($this->definition === null) {
-            $this->definition = (new Definition())
-                ->addOption(new Option('verbose', 'Be more verbose.', 'v', 'verbose', true, true))
-                ->addOption(new Option('help', 'Show help about shell or command.', 'h', 'help'));
-        }
-
-        return $this->definition;
-    }
-
-    /**
-     * Get descriptor.
-     *
-     * @return DescriptorInterface
-     */
-    private function getDescriptor(): DescriptorInterface
-    {
-        return $this->descriptor;
-    }
-
-    /**
-     * Get suggester.
-     *
-     * @return SuggesterInterface
-     */
-    private function getSuggester(): SuggesterInterface
-    {
-        return $this->suggester;
-    }
-
-    /**
-     * Get parser.
-     *
-     * @return ParserInterface
-     */
-    private function getParser(): ParserInterface
-    {
-        return $this->parser;
-    }
-
-    /**
-     * Get about.
-     *
-     * @return AboutInterface
-     */
-    private function getAbout(): AboutInterface
-    {
-        return $this->about;
-    }
-
-    /**
-     * Get commands.
-     *
-     * @return CommandInterface[]
-     */
-    private function getCommands(): array
-    {
-        return $this->commands;
     }
 }

@@ -42,11 +42,8 @@ class Descriptor implements DescriptorInterface
         array $commands,
         bool $short = null
     ): DescriptorInterface {
-        $output = $this->getOutput();
-        $formatter = $output->getFormatter();
-
         if ($short) {
-            $output
+            $this->output
                 ->newLine()
                 ->line(sprintf(
                     'See \'%s --help\' for more information about available commands and options.',
@@ -56,7 +53,7 @@ class Descriptor implements DescriptorInterface
             return $this;
         }
 
-        $output
+        $this->output
             ->line(sprintf(
                 '%s (version %s)',
                 $about->getName(),
@@ -70,7 +67,8 @@ class Descriptor implements DescriptorInterface
                     '%s ',
                     $about->getProgram()
                 ),
-                $formatter
+                $this->output
+                    ->getFormatter()
                     ->setForeground(new Yellow())
                     ->setFixedWidth(strlen($about->getProgram()) + 1)
                     ->setTextIndent(2)
@@ -81,19 +79,21 @@ class Descriptor implements DescriptorInterface
             ->newLine();
 
         if (empty($commands)) {
-            $output->line(
+            $this->output->line(
                 'No commands defined.',
-                $formatter
+                $this->output
+                    ->getFormatter()
                     ->setForeground(new Yellow())
                     ->setTextIndent(2)
             );
         } else {
             foreach ($commands as $command) {
                 if ($command instanceof CommandInterface) {
-                    $output
+                    $this->output
                         ->text(
                             $command->getName(),
-                            $formatter
+                            $this->output
+                                ->getFormatter()
                                 ->setForeground(new Yellow())
                                 ->setFixedWidth(22)
                                 ->setTextIndent(2)
@@ -103,7 +103,7 @@ class Descriptor implements DescriptorInterface
             }
         }
 
-        $output
+        $this->output
             ->newLine()
             ->line('Options:')
             ->newLine();
@@ -111,10 +111,11 @@ class Descriptor implements DescriptorInterface
         foreach ($definition->getOptions() as $option) {
             if ($option instanceof OptionInterface) {
                 $notation = $this->getOptionNotation($option);
-                $output
+                $this->output
                     ->text(
                         $notation,
-                        $formatter
+                        $this->output
+                            ->getFormatter()
                             ->setForeground(new Yellow())
                             ->setFixedWidth(22)
                             ->setTextIndent(2)
@@ -123,7 +124,7 @@ class Descriptor implements DescriptorInterface
             }
         }
 
-        $output
+        $this->output
             ->newLine()
             ->line(sprintf(
                 'See \'%s <command> --help\' for more information about a command.',
@@ -140,12 +141,10 @@ class Descriptor implements DescriptorInterface
     public function command(AboutInterface $about, CommandInterface $command, bool $short = null): DescriptorInterface
     {
         $short = $short ?? false;
-        $output = $this->getOutput();
-        $formatter = $output->getFormatter();
         $definition = $command->getDefinition();
 
         if ($short) {
-            $output
+            $this->output
                 ->newLine()
                 ->line(sprintf(
                     'See \'%s %s --help\' for more information about the command.',
@@ -156,7 +155,7 @@ class Descriptor implements DescriptorInterface
             return $this;
         }
 
-        $output
+        $this->output
             ->line(sprintf(
                 '%s (version %s)',
                 $about->getName(),
@@ -170,7 +169,8 @@ class Descriptor implements DescriptorInterface
                     '%s ',
                     $about->getProgram()
                 ),
-                $formatter
+                $this->output
+                    ->getFormatter()
                     ->setForeground(new Yellow())
                     ->setFixedWidth(strlen($about->getProgram()) + 1)
                     ->setTextIndent(2)
@@ -183,7 +183,7 @@ class Descriptor implements DescriptorInterface
         $operands = $definition->getOperands();
         if (!empty($operands)) {
             foreach ($operands as $operand) {
-                $output->text(sprintf(
+                $this->output->text(sprintf(
                     '<%s> ',
                     $operand->getName()
                 ));
@@ -192,7 +192,7 @@ class Descriptor implements DescriptorInterface
 
         $options = $definition->getOptions();
         if (!empty($options)) {
-            $output
+            $this->output
                 ->line('[<options>] ')
                 ->newLine()
                 ->line('Options:')
@@ -200,10 +200,11 @@ class Descriptor implements DescriptorInterface
 
             foreach ($options as $option) {
                 $notation = $this->getOptionNotation($option);
-                $output
+                $this->output
                     ->text(
                         $notation,
-                        $formatter
+                        $this->output
+                            ->getFormatter()
                             ->setForeground(new Yellow())
                             ->setFixedWidth(22)
                             ->setTextIndent(2)
@@ -211,10 +212,10 @@ class Descriptor implements DescriptorInterface
                     ->line($option->getDescription());
             }
         } else {
-            $output->newLine();
+            $this->output->newLine();
         }
 
-        $output
+        $this->output
             ->newLine()
             ->line(sprintf(
                 'See \'%s --help\' for more information about this shell and default options.',
@@ -230,16 +231,15 @@ class Descriptor implements DescriptorInterface
      */
     public function suggest(CommandInterface $command = null): DescriptorInterface
     {
-        $output = $this->getOutput();
-        $formatter = $output->getFormatter();
-
         if ($command instanceof CommandInterface) {
-            $output
+            $this->output
                 ->newLine()
                 ->text('Did you mean "')
                 ->text(
                     $command->getName(),
-                    $formatter->setForeground(new Yellow())
+                    $this->output
+                        ->getFormatter()
+                        ->setForeground(new Yellow())
                 )
                 ->line('"?');
         }
@@ -253,14 +253,12 @@ class Descriptor implements DescriptorInterface
      */
     public function exception(Throwable $exception): DescriptorInterface
     {
-        $output = $this->getOutput();
-        $formatter = $output->getFormatter();
-
-        $output
-            ->line(
-                $exception->getMessage(),
-                $formatter->setForeground(new Red())
-            );
+        $this->output->line(
+            $exception->getMessage(),
+            $this->output
+                ->getFormatter()
+                ->setForeground(new Red())
+        );
 
         return $this;
     }
@@ -314,15 +312,5 @@ class Descriptor implements DescriptorInterface
         }
 
         return $notation;
-    }
-
-    /**
-     * Get output.
-     *
-     * @return OutputInterface
-     */
-    private function getOutput(): OutputInterface
-    {
-        return $this->output;
     }
 }

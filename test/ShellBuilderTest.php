@@ -23,13 +23,6 @@ class ShellBuilderTest extends TestCase
      * @covers \ExtendsFramework\Shell\ShellBuilder::setParser()
      * @covers \ExtendsFramework\Shell\ShellBuilder::setSuggester()
      * @covers \ExtendsFramework\Shell\ShellBuilder::addCommand()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getName()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getProgram()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getVersion()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getDescriptor()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getParser()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getSuggester()
-     * @covers \ExtendsFramework\Shell\ShellBuilder::getCommands()
      * @covers \ExtendsFramework\Shell\ShellBuilder::build()
      * @covers \ExtendsFramework\Shell\ShellBuilder::reset()
      */

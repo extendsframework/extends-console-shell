@@ -23,14 +23,11 @@ class PosixParser implements ParserInterface
     public function parse(DefinitionInterface $definition, array $arguments, bool $strict = null): ParseResultInterface
     {
         $strict = $strict ?? true;
-
         $result = $this->parseArguments($definition, $arguments, $strict);
         if ($strict) {
-            $parsed = $result->getParsed();
-
             foreach ($definition->getOperands() as $operand) {
                 $name = $operand->getName();
-                if (!array_key_exists($name, $parsed)) {
+                if (!array_key_exists($name, $result->getParsed())) {
                     throw new MissingOperand($name);
                 }
             }
@@ -167,14 +164,14 @@ class PosixParser implements ParserInterface
     private function getOperand(DefinitionInterface $definition, int $position, bool $strict): ?OperandInterface
     {
         try {
-            $operand = $definition->getOperand($position);
+            return $definition->getOperand($position);
         } catch (DefinitionException $exception) {
             if ($strict) {
                 throw $exception;
             }
         }
 
-        return $operand ?? null;
+        return null;
     }
 
     /**
@@ -194,13 +191,13 @@ class PosixParser implements ParserInterface
         bool $strict
     ): ?OptionInterface {
         try {
-            $option = $definition->getOption($name, $long);
+            return $definition->getOption($name, $long);
         } catch (DefinitionException $exception) {
             if ($strict) {
                 throw $exception;
             }
         }
 
-        return $option ?? null;
+        return null;
     }
 }

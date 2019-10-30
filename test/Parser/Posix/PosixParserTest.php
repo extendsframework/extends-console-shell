@@ -225,10 +225,10 @@ class PosixParserTest extends TestCase
      *
      * Test that an exception is thrown when the argument for a required short option is missing.
      *
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument::__construct()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument::__construct()
      */
     public function testRequiredShortOptionWithoutArgument(): void
     {
@@ -506,10 +506,10 @@ class PosixParserTest extends TestCase
      *
      * Test that long option flag ('--name=John Doe') can not be parsed and an exception will be thrown.
      *
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\Exception\ArgumentNotAllowed::__construct()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\Exception\ArgumentNotAllowed::__construct()
      */
     public function testLongOptionFlagWithArgument(): void
     {
@@ -548,10 +548,10 @@ class PosixParserTest extends TestCase
      *
      * Test that long option ('--name') without required argument will throw an exception.
      *
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument::__construct()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOption()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\Exception\MissingArgument::__construct()
      */
     public function testLongOptionWithoutArgument(): void
     {
@@ -741,10 +741,10 @@ class PosixParserTest extends TestCase
      *
      * Test that missing operand can not be parsed and an exception will be thrown.
      *
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOperand()
-     * @covers        \ExtendsFramework\Shell\Parser\Posix\Exception\MissingOperand::__construct()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parse()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::parseArguments()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\PosixParser::getOperand()
+     * @covers \ExtendsFramework\Shell\Parser\Posix\Exception\MissingOperand::__construct()
      */
     public function testMissingOperand(): void
     {

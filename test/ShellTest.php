@@ -43,12 +43,21 @@ class ShellTest extends TestCase
             ->method('shell')
             ->willReturnSelf();
 
+        /**
+         * @var ArgumentNotAllowed $exception
+         */
         $parser = $this->createMock(ParserInterface::class);
         $parser
             ->expects($this->once())
             ->method('parse')
             ->willThrowException($exception);
 
+        /**
+         * @var DescriptorInterface $descriptor
+         * @var SuggesterInterface  $suggester
+         * @var ParserInterface     $parser
+         * @var AboutInterface      $about
+         */
         $shell = new Shell($descriptor, $suggester, $parser, $about);
         $result = $shell->process([
             '--help=true',
@@ -93,6 +102,12 @@ class ShellTest extends TestCase
             ->method('parse')
             ->willReturn($result);
 
+        /**
+         * @var DescriptorInterface $descriptor
+         * @var SuggesterInterface  $suggester
+         * @var ParserInterface     $parser
+         * @var AboutInterface      $about
+         */
         $shell = new Shell($descriptor, $suggester, $parser, $about);
         $result = $shell->process([
             '--help',
@@ -140,6 +155,12 @@ class ShellTest extends TestCase
             ->method('parse')
             ->willReturn($result);
 
+        /**
+         * @var DescriptorInterface $descriptor
+         * @var SuggesterInterface  $suggester
+         * @var ParserInterface     $parser
+         * @var AboutInterface      $about
+         */
         $shell = new Shell($descriptor, $suggester, $parser, $about);
         $result = $shell->process([
             '-v',
@@ -205,6 +226,12 @@ class ShellTest extends TestCase
             ->method('parse')
             ->willReturn($result);
 
+        /**
+         * @var DescriptorInterface $descriptor
+         * @var SuggesterInterface  $suggester
+         * @var ParserInterface     $parser
+         * @var AboutInterface      $about
+         */
         $shell = new Shell($descriptor, $suggester, $parser, $about);
         $result = $shell->process([
             'do.task',
@@ -261,6 +288,13 @@ class ShellTest extends TestCase
             ->method('parse')
             ->willReturn($result);
 
+        /**
+         * @var DescriptorInterface $descriptor
+         * @var SuggesterInterface  $suggester
+         * @var ParserInterface     $parser
+         * @var CommandInterface    $command
+         * @var AboutInterface      $about
+         */
         $shell = new Shell($descriptor, $suggester, $parser, $about);
         $result = $shell
             ->addCommand($command)
@@ -346,6 +380,13 @@ class ShellTest extends TestCase
                 $result
             );
 
+        /**
+         * @var DescriptorInterface $descriptor
+         * @var SuggesterInterface  $suggester
+         * @var ParserInterface     $parser
+         * @var CommandInterface    $command
+         * @var AboutInterface      $about
+         */
         $shell = new Shell($descriptor, $suggester, $parser, $about);
         $result = $shell
             ->addCommand($command)
@@ -418,6 +459,9 @@ class ShellTest extends TestCase
             ->method('getParsed')
             ->willReturn([]);
 
+        /**
+         * @var ArgumentNotAllowed $exception
+         */
         $parser = $this->createMock(ParserInterface::class);
         $parser
             ->expects($this->exactly(2))
@@ -443,6 +487,13 @@ class ShellTest extends TestCase
                 $this->throwException($exception)
             );
 
+        /**
+         * @var DescriptorInterface $descriptor
+         * @var SuggesterInterface  $suggester
+         * @var ParserInterface     $parser
+         * @var CommandInterface    $command
+         * @var AboutInterface      $about
+         */
         $shell = new Shell($descriptor, $suggester, $parser, $about);
         $result = $shell
             ->addCommand($command)

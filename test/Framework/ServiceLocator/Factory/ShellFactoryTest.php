@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace ExtendsFramework\Shell\Framework\ServiceLocator\Factory;
 
-use ExtendsFramework\ServiceLocator\ServiceLocatorInterface;
 use ExtendsFramework\Shell\ShellInterface;
+use ExtendsFramework\ServiceLocator\ServiceLocatorInterface;
 use PHPUnit\Framework\TestCase;
 
 class ShellFactoryTest extends TestCase
@@ -63,6 +63,9 @@ class ShellFactoryTest extends TestCase
                 ],
             ]);
 
+        /**
+         * @var ServiceLocatorInterface $serviceLocator
+         */
         $factory = new ShellFactory();
         $shell = $factory->createService(ShellInterface::class, $serviceLocator, []);
 

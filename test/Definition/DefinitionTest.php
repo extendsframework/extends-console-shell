@@ -45,6 +45,11 @@ class DefinitionTest extends TestCase
 
         $operand = $this->createMock(OperandInterface::class);
 
+        /**
+         * @var OptionInterface  $short
+         * @var OptionInterface  $long
+         * @var OperandInterface $operand
+         */
         $definition = new Definition();
         $definition
             ->addOption($short)

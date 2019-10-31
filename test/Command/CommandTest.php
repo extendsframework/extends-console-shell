@@ -22,6 +22,10 @@ class CommandTest extends TestCase
     public function testGetParameters(): void
     {
         $definition = $this->createMock(DefinitionInterface::class);
+
+        /**
+         * @var DefinitionInterface $definition
+         */
         $command = new Command('do.task', 'Some fancy task!', $definition, ['foo' => 'bar']);
 
         $this->assertSame('do.task', $command->getName());

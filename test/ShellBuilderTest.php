@@ -32,11 +32,6 @@ class ShellBuilderTest extends TestCase
         $descriptor = $this->createMock(DescriptorInterface::class);
         $parser = $this->createMock(ParserInterface::class);
 
-        /**
-         * @var SuggesterInterface  $suggester
-         * @var DescriptorInterface $descriptor
-         * @var ParserInterface     $parser
-         */
         $builder = new ShellBuilder();
         $shell = $builder
             ->setName('Acme console')

@@ -99,7 +99,6 @@ class OutputStub extends TestCase implements OutputInterface
                 return $text;
             });
 
-        /** @var FormatterInterface $formatter */
         return $formatter;
     }
 

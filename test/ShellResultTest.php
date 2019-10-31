@@ -21,9 +21,6 @@ class ShellResultTest extends TestCase
     {
         $command = $this->createMock(CommandInterface::class);
 
-        /**
-         * @var CommandInterface $command
-         */
         $result = new ShellResult($command, ['foo' => 'bar']);
 
         $this->assertSame($command, $result->getCommand());

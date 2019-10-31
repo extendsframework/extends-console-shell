@@ -11,7 +11,6 @@ use ExtendsFramework\Shell\Definition\DefinitionInterface;
 use ExtendsFramework\Shell\Definition\Operand\OperandInterface;
 use ExtendsFramework\Shell\Definition\Option\OptionInterface;
 use PHPUnit\Framework\TestCase;
-use Throwable;
 
 class DescriptorTest extends TestCase
 {
@@ -42,10 +41,6 @@ class DescriptorTest extends TestCase
             ->method('getVersion')
             ->willReturn('0.1');
 
-        /**
-         * @var DefinitionInterface $definition
-         * @var AboutInterface      $about
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->shell($about, $definition, [], true);
 
@@ -122,10 +117,6 @@ class DescriptorTest extends TestCase
             ->method('getVersion')
             ->willReturn('0.1');
 
-        /**
-         * @var DefinitionInterface $definition
-         * @var AboutInterface      $about
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->shell($about, $definition, [
             $command,
@@ -206,10 +197,6 @@ class DescriptorTest extends TestCase
             ->method('getVersion')
             ->willReturn('0.1');
 
-        /**
-         * @var DefinitionInterface $definition
-         * @var AboutInterface      $about
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->shell($about, $definition, []);
 
@@ -264,10 +251,6 @@ class DescriptorTest extends TestCase
             ->method('getVersion')
             ->willReturn('0.1');
 
-        /**
-         * @var CommandInterface $command
-         * @var AboutInterface   $about
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->command($about, $command, true);
 
@@ -362,10 +345,6 @@ class DescriptorTest extends TestCase
             ->method('getVersion')
             ->willReturn('0.1');
 
-        /**
-         * @var CommandInterface $command
-         * @var AboutInterface   $about
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->command($about, $command);
 
@@ -433,10 +412,6 @@ class DescriptorTest extends TestCase
             ->method('getVersion')
             ->willReturn('0.1');
 
-        /**
-         * @var CommandInterface $command
-         * @var AboutInterface   $about
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->command($about, $command);
 
@@ -470,10 +445,6 @@ class DescriptorTest extends TestCase
             ->method('getName')
             ->willReturn('do.task');
 
-        /**
-         * @var OutputInterface  $output
-         * @var CommandInterface $command
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->suggest($command);
 
@@ -496,10 +467,6 @@ class DescriptorTest extends TestCase
     {
         $output = new OutputStub();
 
-        /**
-         * @var OutputInterface $output
-         * @var Throwable       $exception
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->exception(new Exception('Random exception message!'));
 
@@ -526,10 +493,6 @@ class DescriptorTest extends TestCase
             ->with(3)
             ->willReturnSelf();
 
-        /**
-         * @var OutputInterface     $output
-         * @var DefinitionInterface $definition
-         */
         $descriptor = new Descriptor($output);
         $instance = $descriptor->setVerbosity(3);
 

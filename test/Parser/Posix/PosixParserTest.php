@@ -50,9 +50,6 @@ class PosixParserTest extends TestCase
             )
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '-fJohn',
@@ -94,9 +91,6 @@ class PosixParserTest extends TestCase
             ->with('n')
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '-n',
@@ -146,9 +140,6 @@ class PosixParserTest extends TestCase
             )
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '-f',
@@ -205,9 +196,6 @@ class PosixParserTest extends TestCase
             )
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '-v',
@@ -258,9 +246,6 @@ class PosixParserTest extends TestCase
             ->with('f')
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $parser->parse($definition, [
             '-f',
@@ -309,9 +294,6 @@ class PosixParserTest extends TestCase
             )
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '-fbq',
@@ -354,9 +336,6 @@ class PosixParserTest extends TestCase
             ->with('name', true)
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '--name=John Doe',
@@ -396,9 +375,6 @@ class PosixParserTest extends TestCase
             ->with('name', true)
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '--name',
@@ -439,9 +415,6 @@ class PosixParserTest extends TestCase
             ->with('force', true)
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '--force',
@@ -487,9 +460,6 @@ class PosixParserTest extends TestCase
             ->with('verbose', true)
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '--verbose',
@@ -534,9 +504,6 @@ class PosixParserTest extends TestCase
             ->with('name', true)
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $parser->parse($definition, [
             '--name=John Doe',
@@ -576,9 +543,6 @@ class PosixParserTest extends TestCase
             ->with('name', true)
             ->willReturn($option);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $parser->parse($definition, [
             '--name',
@@ -616,9 +580,6 @@ class PosixParserTest extends TestCase
                 $operand,
             ]);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             'John Doe',
@@ -642,10 +603,6 @@ class PosixParserTest extends TestCase
      */
     public function testNonStrictMode(): void
     {
-        /**
-         * @var OptionNotFound  $optionNotFound
-         * @var OperandNotFound $operandNotFound
-         */
         $optionNotFound = $this->createMock(OptionNotFound::class);
         $operandNotFound = $this->createMock(OperandNotFound::class);
 
@@ -709,9 +666,6 @@ class PosixParserTest extends TestCase
                 $this->throwException($operandNotFound)
             );
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '-xf',
@@ -765,9 +719,6 @@ class PosixParserTest extends TestCase
                 $operand,
             ]);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $parser->parse($definition, []);
     }
@@ -785,9 +736,6 @@ class PosixParserTest extends TestCase
     {
         $this->expectException(OperandNotFound::class);
 
-        /**
-         * @var OperandNotFound $exception
-         */
         $exception = $this->createMock(OperandNotFound::class);
 
         $definition = $this->createMock(DefinitionInterface::class);
@@ -797,9 +745,6 @@ class PosixParserTest extends TestCase
             ->with(0)
             ->willThrowException($exception);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $parser->parse($definition, [
             'John Doe',
@@ -819,9 +764,6 @@ class PosixParserTest extends TestCase
     {
         $this->expectException(OptionNotFound::class);
 
-        /**
-         * @var OptionNotFound $exception
-         */
         $exception = $this->createMock(OptionNotFound::class);
 
         $definition = $this->createMock(DefinitionInterface::class);
@@ -831,9 +773,6 @@ class PosixParserTest extends TestCase
             ->with('x')
             ->willThrowException($exception);
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $parser->parse($definition, [
             '-x',
@@ -876,9 +815,6 @@ class PosixParserTest extends TestCase
                 $operand2
             );
 
-        /**
-         * @var DefinitionInterface $definition
-         */
         $parser = new PosixParser();
         $result = $parser->parse($definition, [
             '--',

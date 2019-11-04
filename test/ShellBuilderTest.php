@@ -62,4 +62,20 @@ class ShellBuilderTest extends TestCase
 
         $this->assertIsObject($shell);
     }
+
+    /**
+     * Build shell without commands.
+     *
+     * Test that builder will build and return a shell without commands.
+     *
+     * @covers \ExtendsFramework\Shell\ShellBuilder::build()
+     * @covers \ExtendsFramework\Shell\ShellBuilder::reset()
+     */
+    public function testBuildWithoutCommand(): void
+    {
+        $builder = new ShellBuilder();
+        $shell = $builder->build();
+
+        $this->assertIsObject($shell);
+    }
 }

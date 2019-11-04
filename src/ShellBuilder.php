@@ -68,7 +68,7 @@ class ShellBuilder implements ShellBuilderInterface
      *
      * @var CommandInterface[]
      */
-    private $commands;
+    private $commands = [];
 
     /**
      * @inheritDoc
